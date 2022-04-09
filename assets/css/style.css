@@ -34,6 +34,7 @@ form {
     float: bottom;
 }
 
+html, body,
 #viewDiv {
   padding: 0;
   margin: 0;
