@@ -33,10 +33,17 @@ function setEventListeners() {
   document.addEventListener("click", function (event) {
     var element = event.target;
 
+    var location = document.getElementById(`locationSearch`).value;
+    var species = document.getElementById(`speciesMenu`).value;
+
     if (element.matches("#searchBtn")) {
       console.log("Search Button Clicked");
       event.preventDefault();
-      // console.log(document.getElementById(`locationInput`).value);
+      console.log(document.getElementById(`locationSearch`).value);
+      console.log(document.getElementById(`speciesMenu`).value);
+      console.log(location);
+      console.log(species);
+
       //  runSearch(); // RUN SEARCH FUNCTION
     }
   });
