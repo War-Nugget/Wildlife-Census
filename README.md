@@ -1,23 +1,19 @@
-# Price-of-Crime - Housing-Price-vs-Crime-Rates-Map
+# Wildlife Census
 
 An easy to use reference for users to search home prices vs. crime rates in a defined geographic search area.
 
 # Description:
 
-An interactive web application that will allow the user to map crime data over housing price maps in order to make informed decisions on where to purchase housing or investment properties. Uses the Zillow API and housing price maps combined with area crime maps to create a base crime level score based on user search input.
+An interactive web application that will allow the user to wildlife density based on an input search location.
 
 # User Story:
 
-As a prospective homebuyer,
+As a user,
 
-I want to be able to see housing prices and crime data for the properties I am interested in,
+I want to be able to see wildlife density on a specific species, cross referenced with location.
 
-So that I can make an informed decision about where to live and / or invest in property.
+So that I can know what animals are concentrated in the area that I live.
 
 # API’s used:
 
-Zillow
-
-Crime-o-meter / FBI Crime Stats
-Or
-Arc GIS Crime Risk Map = Relative Risk based on annual data
+Arc GIS
