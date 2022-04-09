@@ -1,0 +1,42 @@
+* {
+background-color: white;
+color: black
+
+}
+
+body {
+
+
+}
+
+header {
+background-color: gray;
+
+}
+
+header h1 {
+size: 40px;
+text-align: right;    
+}
+
+
+#locationSearch {
+    width: 450px
+    border: 2px;
+}
+
+.btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form {
+    float: bottom;
+}
+
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
