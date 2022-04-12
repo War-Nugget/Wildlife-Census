@@ -1,4 +1,6 @@
-var searchInput = document.getElementById("locationInput");
+var latitude = document.getElementById("latInput");
+var longitude = document.getElementById("longInput");
+var species = document.getElementById(`speciesMenu`).value;
 var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 
@@ -33,16 +35,17 @@ function setEventListeners() {
   document.addEventListener("click", function (event) {
     var element = event.target;
 
-    var location = document.getElementById(`locationSearch`).value;
-    var species = document.getElementById(`speciesMenu`).value;
+    var lat = document.getElementById(`latInput`).value;
+    var lon = document.getElementById(`longInput`).value;
 
     if (element.matches("#searchBtn")) {
       console.log("Search Button Clicked");
       event.preventDefault();
-      console.log(document.getElementById(`locationSearch`).value);
+      console.log(document.getElementById(`latInput`).value);
+      console.log(document.getElementById(`latInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
-      console.log(location);
-      console.log(species);
+      console.log(lat);
+      console.log(lon);
 
       //  runSearch(); // RUN SEARCH FUNCTION
     }
@@ -76,7 +79,7 @@ var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
   center: [-84.388, 33.749],
-  zoom: 9,
+  zoom: 7,
 });
 
 map.on("load", () => {

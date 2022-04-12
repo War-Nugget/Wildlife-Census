@@ -26,11 +26,11 @@
   <body>
     <div class="container">
     <header>
-      <div class="input-field col s5 left">
-        <form><input id="locationSearch" placeholder="Search A City"><button id="searchBtn" class="btn" >Search</button></input></form>
+      <div class="input-field col s2.5 left">
+        <form><input id="latInput" placeholder="Latitude"><input id="longInput" placeholder="Longitude"><button id="searchBtn" class="btn" >Search</button></input></form>
       </div>
 
-    <div class="input-field col s5 left">
+    <div class="input-field col s2.5 left">
       <input
       id="speciesMenu"
       list="species"
@@ -38,19 +38,22 @@
       name="Species"
       placeholder="Select a Species"
     />
+
     <datalist id="species">
-      <option value="Armadillo">Armadillo</option>
-      <option value="Bears">Bears</option>
-      <option value="Bison">Bison</option>
-      <option value="Cardinals">Cardinals</option>
-      <option value="Caribou">Caribou</option>
-      <option value="Elk">Elk</option>
-      <option value="Geese">Geese</option>
+      <option value="Armadillo">Giant Panda</option>
+      <option value="Bears">Tiger</option>
+      <option value="Bison">Whooping Crane</option>
+      <option value="Cardinals">Blue Whale</option>
+      <option value="Caribou">Flying Squirrel</option>
+      <option value="Elk">Sea Otters</option>
+
+      <!-- <option value="Geese">Geese</option>
       <option value="Groundhog">Groundhog</option>
       <option value="Possom">Possom</option>
       <option value="Rat Snake">Rat Snake</option>
       <option value="Redtail Hawk">Redtail Hawk</option>
-      <option value="Wildcat">Wildcat</option>
+      <option value="Wildcat">Wildcat</option> -->
+
     </datalist>
   </div>
 
@@ -66,37 +69,38 @@
 
     <div class="row">
 
-        <div class="col s9" id="homePriceMap">
+        <div class="col s9" id="wildlifeMap">
 
-          <h2>Map</h2>
+          <h2>Occurance Map</h2>
           <!-- <div id="viewDiv"></div> -->
-          <div id="map" style="width: 500px; height: 300px"></div>
+          <div id="map" style="width: 800px; height: 500px"></div>
+          <p>Each dot represents one occurance of witness of the species.</p>
     
         </div>
 
-        <div class="col s3" id="crimeMap">
+        <div class="col s3" id="wildlifeStats">
 
-          <h2>Map 2?</h2>
+          <h2>Species Stats</h2>
       
         </div> 
 
     </div>
-
+<!-- 
     <div class="row">
 
-        <div class="col s6" id="hpSummary">
+        <div class="col s6" id="mapSummary">
 
-          <h3>Location Summary</h3>
+          <h3>Map Summary</h3>
   
         </div>
 
-        <div class="col s6" id="crimeSummary">
+        <div class="col s6" id="statsSummary">
 
           <h3>Species Summary</h3>
     
         </div> 
 
-    </div>
+    </div> -->
     <div class="divider"></div>
     <div class="row">
 
