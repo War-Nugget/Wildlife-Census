@@ -122,3 +122,25 @@ map.on("load", () => {
   });
 });
 
+
+map.on("load", () => {
+  map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.1j46i1u6",
+  });
+  map.addLayer({
+    id: "ianjustinferris.1j46i1u6",
+    type: "circle",
+    source: "Panthera_Tigris_LInnaeus_1758-022kix",
+    "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#ff94c9",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+
+
