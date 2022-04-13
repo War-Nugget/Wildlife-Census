@@ -103,15 +103,15 @@ map.on("load", () => {
 });
 
 map.on("load", () => {
-  map.addSource("Urocyon_cinereoargenteus_Data-5iuwnb", {
+  map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
     type: "vector",
-    url: "mapbox://ianjustinferris.9irq28sz",
+    url: "mapbox://ianjustinferris.8892homl",
   });
   map.addLayer({
-    id: "ianjustinferris.9irq28sz",
+    id: "ianjustinferris.8892homl",
     type: "circle",
-    source: "Urocyon_cinereoargenteus_Data-5iuwnb",
-    "source-layer": "Urocyon_cinereoargenteus_Data-5iuwnb",
+    source: "Ailuropoda_melanolenea_David_-57zylr",
+    "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
     paint: {
       "circle-radius": 5,
       "circle-color": "#F4511E",
@@ -122,22 +122,3 @@ map.on("load", () => {
   });
 });
 
-map.on("load", () => {
-  map.addSource("Pantherophis_alleghaniensis-4e6fa5", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.9ybevubg",
-  });
-  map.addLayer({
-    id: "ianjustinferris.9ybevubg",
-    type: "circle",
-    source: "Pantherophis_alleghaniensis-4e6fa5",
-    "source-layer": "Pantherophis_alleghaniensis-4e6fa5",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#FFCC66",
-      "circle-stroke-color": "#CC6633 ",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
-  });
-});
