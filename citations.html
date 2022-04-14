@@ -15,7 +15,10 @@
       crossorigin="anonymous"
     />
     <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css"/> -->
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css"/>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
@@ -26,91 +29,38 @@
 
   <body>
     <div class="container">
-    <header>
-      <div class="input-field col s2.5 left">
-        <form>
- 
-          <p>Coordinates:</p>
+      <header>
+        <div class="row">
+          <div class="col s6">
+            <h1 class="right">Wildlife Census</h1>
+          </div>
+        </div>
+      </header>
 
-<div>
-  <input type="range" id="latInput" name="latitude"
-         min="-90" max="90">
-  <label for="latitude">Latitude</label>
-</div>
-
-<div>
-  <input type="range" id="longInput" name="longitude" 
-         min="-180" max="180" value="90" step="10">
-  <label for="longitude">Longitude</label>
-</div>
-
-          <!-- <input id="latInput" placeholder="Latitude"><input id="longInput" placeholder="Longitude"> -->
-          
-          <button id="searchBtn" class="btn" >Search</button></input></form>
-      </div>
-
-    <div class="input-field col s2.5 left">
-      <input
-      id="speciesMenu"
-      list="species"
-      class="col-md-9"
-      name="Species"
-      placeholder="Select a Species"
-    />
-
-    <datalist id="species">
-      <option value="Armadillo">Giant Panda</option>
-      <option value="Bears">Tiger</option>
-      <option value="Bison">Whooping Crane</option>
-      <option value="Cardinals">Blue Whale</option>
-      <option value="Caribou">Flying Squirrel</option>
-      <option value="Elk">Sea Otters</option>
-
-      <!-- <option value="Geese">Geese</option>
-      <option value="Groundhog">Groundhog</option>
-      <option value="Possom">Possom</option>
-      <option value="Rat Snake">Rat Snake</option>
-      <option value="Redtail Hawk">Redtail Hawk</option>
-      <option value="Wildcat">Wildcat</option> -->
-
-    </datalist>
-  </div>
+      <div class="divider"></div>
 
       <div class="row">
-        <div class="col s6">
-          <h1 class="right">Wildlife Census </h1>
-        </div>
+        <h2>Citations:</h2>
+        <p>
+          This project makes use of the Global Biodiversity Information Facility
+          API to display sighting occurances of endangered wildlife around the
+          globe based on geographic coordinates.
+        </p>
+
+        Global Biodiversity Information Faciltiy
       </div>
 
-    </header>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-    <div class="divider"></div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <div class="row">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <h2> Citations: 
+      <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js"></script>
 
-            
-        </h2>
+      <!-- <script src="https://js.arcgis.com/4.23/"></script> -->
 
-    </div>
-
-
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js"></script>
-
-    <!-- <script src="https://js.arcgis.com/4.23/"></script> -->
-
-    <script async src="./assets/js/script.js"></script>
+      <script async src="./assets/js/script.js"></script>
     </div>
   </body>
 </html>
