@@ -82,6 +82,7 @@ var map = new mapboxgl.Map({
   zoom: 7,
 });
 
+// Flying Squirrel Layer
 map.on("load", () => {
   map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
     type: "vector",
@@ -102,16 +103,17 @@ map.on("load", () => {
   });
 });
 
+// Panda Layer
 map.on("load", () => {
-  map.addSource("Urocyon_cinereoargenteus_Data-5iuwnb", {
+  map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
     type: "vector",
-    url: "mapbox://ianjustinferris.9irq28sz",
+    url: "mapbox://ianjustinferris.8892homl",
   });
   map.addLayer({
-    id: "ianjustinferris.9irq28sz",
+    id: "ianjustinferris.8892homl",
     type: "circle",
-    source: "Urocyon_cinereoargenteus_Data-5iuwnb",
-    "source-layer": "Urocyon_cinereoargenteus_Data-5iuwnb",
+    source: "Ailuropoda_melanolenea_David_-57zylr",
+    "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
     paint: {
       "circle-radius": 5,
       "circle-color": "#F4511E",
@@ -122,19 +124,41 @@ map.on("load", () => {
   });
 });
 
+// Tiger Layer
 map.on("load", () => {
-  map.addSource("Pantherophis_alleghaniensis-4e6fa5", {
+  map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
     type: "vector",
-    url: "mapbox://ianjustinferris.9ybevubg",
+    url: "mapbox://ianjustinferris.1j46i1u6",
   });
   map.addLayer({
-    id: "ianjustinferris.9ybevubg",
+    id: "ianjustinferris.1j46i1u6",
     type: "circle",
-    source: "Pantherophis_alleghaniensis-4e6fa5",
-    "source-layer": "Pantherophis_alleghaniensis-4e6fa5",
+    source: "Panthera_Tigris_LInnaeus_1758-022kix",
+    "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
     paint: {
       "circle-radius": 3.5,
-      "circle-color": "#FFCC66",
+      "circle-color": "#ff94c9",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+
+//Asian Elephant Layer
+map.on("load", () => {
+  map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.5phjig5h",
+  });
+  map.addLayer({
+    id: "ianjustinferris.5phjig5h",
+    type: "circle",
+    source: "Elephus_Maximus_Linnaeus-0d8jht",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#2b9e49",
       "circle-stroke-color": "#CC6633 ",
       "circle-stroke-width": 1.5,
       "circle-opacity": 0.85,

@@ -28,25 +28,8 @@
     <div class="container">
     <header>
       <div class="input-field col s2.5 left">
-        <form>
- 
-          <p>Coordinates:</p>
 
-<div>
-  <input type="range" id="latInput" name="latitude"
-         min="-90" max="90">
-  <label for="latitude">Latitude</label>
-</div>
-
-<div>
-  <input type="range" id="longInput" name="longitude" 
-         min="-180" max="180" value="90" step="10">
-  <label for="longitude">Longitude</label>
-</div>
-
-          <!-- <input id="latInput" placeholder="Latitude"><input id="longInput" placeholder="Longitude"> -->
-          
-          <button id="searchBtn" class="btn" >Search</button></input></form>
+        <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn" >Search</button></input></form>
       </div>
 
     <div class="input-field col s2.5 left">
@@ -77,8 +60,8 @@
   </div>
 
       <div class="row">
-        <div class="col s6">
-          <h1 class="right">Wildlife Census </h1>
+        <div id="projectTitle" class="col s6">
+          <h1 class="right">Endangered Wildlife Census </h1>
         </div>
       </div>
 
@@ -94,6 +77,7 @@
           <!-- <div id="viewDiv"></div> -->
           <div id="map" style="width: 800px; height: 500px"></div>
           <p>Each dot represents one occurance of witness of the species.</p>
+          <img src="assets/images/GBIF-2015-full.jpg">
     
         </div>
 
