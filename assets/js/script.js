@@ -8,6 +8,8 @@ var storedSearches = [];
 
 var lat = document.getElementById(`latInput`).value;
 var lon = document.getElementById(`longInput`).value;
+
+var map;
 // require(["esri/config", "esri/Map", "esri/views/MapView"], function (
 //   esriConfig,
 //   Map,
@@ -29,9 +31,12 @@ var lon = document.getElementById(`longInput`).value;
 
 // ** Search function and Event Listeners**
 
-function runSearch() {
+function runSearch(lat, lon) {
   console.log("RUN SEARCH FUNCION CALLED");
-}
+  map.flyTo({
+    center:[lon, lat]
+  })
+};
 
 function setEventListeners() {
   document.addEventListener("click", function (event) {
@@ -50,7 +55,7 @@ function setEventListeners() {
       console.log(lon);
 
 
-      //  runSearch(); // RUN SEARCH FUNCTION
+       runSearch(lat, lon); // RUN SEARCH FUNCTION
     }
   });
 
@@ -95,7 +100,7 @@ function errorLocation() {
 
 //Put a setupMap function around map creation to add center parameter for geolocation
 function setupMap(center) {
-  var map = new mapboxgl.Map({
+  map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
     center: center,
