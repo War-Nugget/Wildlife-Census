@@ -3,21 +3,16 @@ var longitude = document.getElementById("longInput");
 var species = document.getElementById(`speciesMenu`).value;
 var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
-var wildlifeStatsEl = document.querySelector("#wildlifeStats");
-
 
 var storedSearches = [];
 
-var lat = document.getElementById(`latInput`).value;
-var lon = document.getElementById(`longInput`).value;
-
-var map;
 // require(["esri/config", "esri/Map", "esri/views/MapView"], function (
 //   esriConfig,
 //   Map,
 //   MapView
 // ) {
 //   esriConfig.apiKey = "YOUR_API_KEY";
+
 //   const map = new Map({
 //     basemap: "arcgis-topographic", // Basemap layer service
 //   });
@@ -32,12 +27,9 @@ var map;
 
 // ** Search function and Event Listeners**
 
-function runSearch(lat, lon) {
+function runSearch() {
   console.log("RUN SEARCH FUNCION CALLED");
-  map.flyTo({
-    center:[lon, lat]
-  })
-};
+}
 
 function setEventListeners() {
   document.addEventListener("click", function (event) {
@@ -50,13 +42,12 @@ function setEventListeners() {
       console.log("Search Button Clicked");
       event.preventDefault();
       console.log(document.getElementById(`latInput`).value);
-      console.log(document.getElementById(`longInput`).value);
+      console.log(document.getElementById(`latInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
 
-
-       runSearch(lat, lon); // RUN SEARCH FUNCTION
+      //  runSearch(); // RUN SEARCH FUNCTION
     }
   });
 
@@ -78,117 +69,99 @@ function setEventListeners() {
       localStorage.clear(); // CLEAR STORAGE
     }
   });
-};
+}
 
 setEventListeners();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
-
-// setting geolocation
-navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-  enableHighAccuracy: true
+var map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
+  center: [-84.388, 33.749],
+  zoom: 7,
 });
 
-function successLocation(position) {
-  console.log(position)
-  setupMap([position.coords.longitude, position.coords.latitude])
-};
-
-function errorLocation() {
-  setupMap([-2.24, 53.48]) //default long/lat to Manchester, UK
-};
-
-//Put a setupMap function around map creation to add center parameter for geolocation
-function setupMap(center) {
-  map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
-    center: center,
-    zoom: 7,
+// Flying Squirrel Layer
+map.on("load", () => {
+  map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.7e7jfhov",
   });
-  map.on("load", () => {
-    map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.7e7jfhov",
-    });
-    map.addLayer({
-      id: "ianjustinferris.7e7jfhov",
-      type: "circle",
-      source: "thene_Cunicularia_Dataset-bqcy9s",
-      "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
-      paint: {
-        "circle-radius": 3,
-        "circle-color": "#00FF99",
-        "circle-stroke-color": "#006666",
-        "circle-stroke-width": 1,
-        "circle-opacity": 0.75,
-      },
-    });
+  map.addLayer({
+    id: "ianjustinferris.7e7jfhov",
+    type: "circle",
+    source: "thene_Cunicularia_Dataset-bqcy9s",
+    "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
+    paint: {
+      "circle-radius": 3,
+      "circle-color": "#00FF99",
+      "circle-stroke-color": "#006666",
+      "circle-stroke-width": 1,
+      "circle-opacity": 0.75,
+    },
   });
+});
 
-  map.on("load", () => {
-    map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.8892homl",
-    });
-    map.addLayer({
-      id: "ianjustinferris.8892homl",
-      type: "circle",
-      source: "Ailuropoda_melanolenea_David_-57zylr",
-      "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
-      paint: {
-        "circle-radius": 5,
-        "circle-color": "#F4511E",
-        "circle-stroke-color": "#BF360C",
-        "circle-stroke-width": 1,
-        "circle-opacity": 1,
-      },
-    });
+// Panda Layer
+map.on("load", () => {
+  map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.8892homl",
   });
-
-
-
-  map.on("load", () => {
-    map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.1j46i1u6",
-    });
-    map.addLayer({
-      id: "ianjustinferris.1j46i1u6",
-      type: "circle",
-      source: "Panthera_Tigris_LInnaeus_1758-022kix",
-      "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
-      paint: {
-        "circle-radius": 3.5,
-        "circle-color": "#ff94c9",
-        "circle-stroke-color": "#CC6633 ",
-        "circle-stroke-width": 1.5,
-        "circle-opacity": 0.85,
-      },
-    });
+  map.addLayer({
+    id: "ianjustinferris.8892homl",
+    type: "circle",
+    source: "Ailuropoda_melanolenea_David_-57zylr",
+    "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
+    paint: {
+      "circle-radius": 5,
+      "circle-color": "#F4511E",
+      "circle-stroke-color": "#BF360C",
+      "circle-stroke-width": 1,
+      "circle-opacity": 1,
+    },
   });
-};
+});
 
-// TODO: Connect this function to the "Select a Species" drop down menu
-// Get the JSON that contains the title and extract of the wikipedia article.
-function wikiGet(url) {
+// Tiger Layer
+map.on("load", () => {
+  map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.1j46i1u6",
+  });
+  map.addLayer({
+    id: "ianjustinferris.1j46i1u6",
+    type: "circle",
+    source: "Panthera_Tigris_LInnaeus_1758-022kix",
+    "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#ff94c9",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
 
-  // The var below on line 151 is a test URL
-  // var flyingSquirrel = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=flying_squirrel&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
-
-  console.log(url);
-
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // console.log(data);
-      // console.log(data.query.pages[0].title);
-      // console.log(data.query.pages[0].extract);
-      wildlifeStatsEl.append(data.query.pages[0].title)
-      wildlifeStatsEl.append(data.query.pages[0].extract)
-      
-    });
-}
+//Asian Elephant Layer
+map.on("load", () => {
+  map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.5phjig5h",
+  });
+  map.addLayer({
+    id: "ianjustinferris.5phjig5h",
+    type: "circle",
+    source: "Elephus_Maximus_Linnaeus-0d8jht",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#2b9e49",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
