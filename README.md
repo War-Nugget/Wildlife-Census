@@ -14,6 +14,10 @@ I want to be able to see wildlife density on endangered species, based on geogra
 
 So that I can know where endangered animals are concentrated around the world and basic information about their species.
 
+# Link to Deployed Application:
+
+https://mdschenck.github.io/Wildlife-Census/
+
 # API’s used:
 
 GBIF - This project uses the Global Biodiversity Information Facility API to display population density as occurence points on a worldwide map. The GBIF project aims to provide anyone, anywhere open access to data about all types of life on Earth.
