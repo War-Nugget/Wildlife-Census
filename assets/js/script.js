@@ -42,7 +42,7 @@ function setEventListeners() {
       console.log("Search Button Clicked");
       event.preventDefault();
       console.log(document.getElementById(`latInput`).value);
-      console.log(document.getElementById(`latInput`).value);
+      console.log(document.getElementById(`longInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);

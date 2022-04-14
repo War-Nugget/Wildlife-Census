@@ -14,7 +14,8 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css"/>
+    <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css"/> -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css"/>
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
@@ -27,6 +28,7 @@
     <div class="container">
     <header>
       <div class="input-field col s2.5 left">
+
         <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn" >Search</button></input></form>
       </div>
 
@@ -40,12 +42,12 @@
     />
 
     <datalist id="species">
-      <option value="Armadillo">Giant Panda</option>
-      <option value="Bears">Tiger</option>
-      <option value="Bison">Whooping Crane</option>
-      <option value="Cardinals">Blue Whale</option>
-      <option value="Caribou">Flying Squirrel</option>
-      <option value="Elk">Sea Otters</option>
+      <option value="Giant Panda ">Giant Panda</option>
+      <option value="Tiger">Tiger</option>
+      <option value="Whooping Crane">Whooping Crane</option>
+      <option value="Blue Whale">Blue Whale</option>
+      <option value="Flying Squirrel">Flying Squirrel</option>
+      <option value="Sea Otters">Sea Otters</option>
 
       <!-- <option value="Geese">Geese</option>
       <option value="Groundhog">Groundhog</option>
