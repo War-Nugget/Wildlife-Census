@@ -8,6 +8,10 @@ var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 
 var storedSearches = [];
 
+var lat = document.getElementById(`latInput`).value;
+var lon = document.getElementById(`longInput`).value;
+
+var map;
 // require(["esri/config", "esri/Map", "esri/views/MapView"], function (
 //   esriConfig,
 //   Map,
@@ -28,9 +32,12 @@ var storedSearches = [];
 
 // ** Search function and Event Listeners**
 
-function runSearch() {
+function runSearch(lat, lon) {
   console.log("RUN SEARCH FUNCION CALLED");
-}
+  map.flyTo({
+    center:[lon, lat]
+  })
+};
 
 function setEventListeners() {
   document.addEventListener("click", function (event) {
@@ -43,12 +50,13 @@ function setEventListeners() {
       console.log("Search Button Clicked");
       event.preventDefault();
       console.log(document.getElementById(`latInput`).value);
-      console.log(document.getElementById(`latInput`).value);
+      console.log(document.getElementById(`longInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
 
-      //  runSearch(); // RUN SEARCH FUNCTION
+
+       runSearch(lat, lon); // RUN SEARCH FUNCTION
     }
   });
 
@@ -70,78 +78,97 @@ function setEventListeners() {
       localStorage.clear(); // CLEAR STORAGE
     }
   });
-}
+};
 
 setEventListeners();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
-var map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
-  center: [-84.388, 33.749],
-  zoom: 7,
+
+// setting geolocation
+navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+  enableHighAccuracy: true
 });
 
-map.on("load", () => {
-  map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.7e7jfhov",
-  });
-  map.addLayer({
-    id: "ianjustinferris.7e7jfhov",
-    type: "circle",
-    source: "thene_Cunicularia_Dataset-bqcy9s",
-    "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
-    paint: {
-      "circle-radius": 3,
-      "circle-color": "#00FF99",
-      "circle-stroke-color": "#006666",
-      "circle-stroke-width": 1,
-      "circle-opacity": 0.75,
-    },
-  });
-});
+function successLocation(position) {
+  console.log(position)
+  setupMap([position.coords.longitude, position.coords.latitude])
+};
 
-map.on("load", () => {
-  map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.8892homl",
-  });
-  map.addLayer({
-    id: "ianjustinferris.8892homl",
-    type: "circle",
-    source: "Ailuropoda_melanolenea_David_-57zylr",
-    "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
-    paint: {
-      "circle-radius": 5,
-      "circle-color": "#F4511E",
-      "circle-stroke-color": "#BF360C",
-      "circle-stroke-width": 1,
-      "circle-opacity": 1,
-    },
-  });
-});
+function errorLocation() {
+  setupMap([-2.24, 53.48]) //default long/lat to Manchester, UK
+};
 
-map.on("load", () => {
-  map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.1j46i1u6",
+//Put a setupMap function around map creation to add center parameter for geolocation
+function setupMap(center) {
+  map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
+    center: center,
+    zoom: 7,
   });
-  map.addLayer({
-    id: "ianjustinferris.1j46i1u6",
-    type: "circle",
-    source: "Panthera_Tigris_LInnaeus_1758-022kix",
-    "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#ff94c9",
-      "circle-stroke-color": "#CC6633 ",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
+  map.on("load", () => {
+    map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.7e7jfhov",
+    });
+    map.addLayer({
+      id: "ianjustinferris.7e7jfhov",
+      type: "circle",
+      source: "thene_Cunicularia_Dataset-bqcy9s",
+      "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
+      paint: {
+        "circle-radius": 3,
+        "circle-color": "#00FF99",
+        "circle-stroke-color": "#006666",
+        "circle-stroke-width": 1,
+        "circle-opacity": 0.75,
+      },
+    });
   });
-});
+
+  map.on("load", () => {
+    map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.8892homl",
+    });
+    map.addLayer({
+      id: "ianjustinferris.8892homl",
+      type: "circle",
+      source: "Ailuropoda_melanolenea_David_-57zylr",
+      "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
+      paint: {
+        "circle-radius": 5,
+        "circle-color": "#F4511E",
+        "circle-stroke-color": "#BF360C",
+        "circle-stroke-width": 1,
+        "circle-opacity": 1,
+      },
+    });
+  });
+
+
+
+  map.on("load", () => {
+    map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.1j46i1u6",
+    });
+    map.addLayer({
+      id: "ianjustinferris.1j46i1u6",
+      type: "circle",
+      source: "Panthera_Tigris_LInnaeus_1758-022kix",
+      "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#ff94c9",
+        "circle-stroke-color": "#CC6633 ",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
+};
 
 // TODO: Connect this function to the "Select a Species" drop down menu
 // Get the JSON that contains the title and extract of the wikipedia article.
