@@ -3,6 +3,8 @@ var longitude = document.getElementById("longInput");
 var species = document.getElementById(`speciesMenu`).value;
 var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
+var wildlifeStatsEl = document.querySelector("#wildlifeStats");
+
 
 var storedSearches = [];
 
@@ -16,7 +18,6 @@ var map;
 //   MapView
 // ) {
 //   esriConfig.apiKey = "YOUR_API_KEY";
-
 //   const map = new Map({
 //     basemap: "arcgis-topographic", // Basemap layer service
 //   });
@@ -147,6 +148,7 @@ function setupMap(center) {
   });
 
 
+
   map.on("load", () => {
     map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
       type: "vector",
@@ -168,3 +170,25 @@ function setupMap(center) {
   });
 };
 
+// TODO: Connect this function to the "Select a Species" drop down menu
+// Get the JSON that contains the title and extract of the wikipedia article.
+function wikiGet(url) {
+
+  // The var below on line 151 is a test URL
+  // var flyingSquirrel = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=flying_squirrel&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
+
+  console.log(url);
+
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.query.pages[0].title);
+      // console.log(data.query.pages[0].extract);
+      wildlifeStatsEl.append(data.query.pages[0].title)
+      wildlifeStatsEl.append(data.query.pages[0].extract)
+      
+    });
+}
