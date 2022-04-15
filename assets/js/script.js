@@ -194,6 +194,28 @@ map.on("load", () => {
 });
 
 
+//Gorilla Layer
+map.on("load", () => {
+  map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.0gafe0i4",
+  });
+  map.addLayer({
+    id: "ianjustinferris.0gafe0i4",
+    type: "circle",
+    source: "Gorilla_Beringei_Matschie1903-55g5ja",
+    "source-layer": "Gorilla_Beringei_Matschie1903-55g5ja",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#48f0f0",
+      "circle-stroke-color": "#0db8b8",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+
+
 
 // TODO: Connect this function to the "Select a Species" drop down menu
 // Get the JSON that contains the title and extract of the wikipedia article.
