@@ -42,7 +42,7 @@ function setEventListeners() {
       console.log("Search Button Clicked");
       event.preventDefault();
       console.log(document.getElementById(`latInput`).value);
-      console.log(document.getElementById(`longInput`).value);
+      console.log(document.getElementById(`latInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
@@ -122,7 +122,8 @@ map.on("load", () => {
       "circle-opacity": 1,
     },
   });
-});
+ });
+
 
 // Tiger Layer
 map.on("load", () => {
@@ -155,6 +156,32 @@ map.on("load", () => {
     id: "ianjustinferris.5phjig5h",
     type: "circle",
     source: "Elephus_Maximus_Linnaeus-0d8jht",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jhtx",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#ff94c9",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+  
+
+//Sea Otter Layer
+map.on("load", () => {
+  map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.5eqsetbk",
+  });
+  map.addLayer({
+    id: "ianjustinferris.5eqsetbk",
+    type: "circle",
+    source: "Enhydra_Lutris_Merriam1904-6iungd",
+    "source-layer": "Enhydra_Lutris_Merriam1904-6iungd",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#f58207",
     "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
     paint: {
       "circle-radius": 3.5,
