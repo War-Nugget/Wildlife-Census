@@ -3,27 +3,9 @@ var longitude = document.getElementById("longInput");
 var species = document.getElementById(`speciesMenu`).value;
 var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
+var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 
 var storedSearches = [];
-
-// require(["esri/config", "esri/Map", "esri/views/MapView"], function (
-//   esriConfig,
-//   Map,
-//   MapView
-// ) {
-//   esriConfig.apiKey = "YOUR_API_KEY";
-
-//   const map = new Map({
-//     basemap: "arcgis-topographic", // Basemap layer service
-//   });
-
-//   const view = new MapView({
-//     map: map,
-//     center: [-118.805, 34.027], // Longitude, latitude
-//     zoom: 13, // Zoom level
-//     container: "viewDiv", // Div element
-//   });
-// });
 
 // ** Search function and Event Listeners**
 
@@ -122,8 +104,7 @@ map.on("load", () => {
       "circle-opacity": 1,
     },
   });
- });
-
+});
 
 // Tiger Layer
 map.on("load", () => {
@@ -166,7 +147,6 @@ map.on("load", () => {
     },
   });
 });
-  
 
 //Sea Otter Layer
 map.on("load", () => {
@@ -192,4 +172,29 @@ map.on("load", () => {
     },
   });
 });
+
+
+// TODO: Connect this function to the "Select a Species" drop down menu
+// Get the JSON that contains the title and extract of the wikipedia article.
+function wikiGet(url) {
+
+  // The var below on line 151 is a test URL
+  // var flyingSquirrel = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=flying_squirrel&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
+
+  console.log(url);
+
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.query.pages[0].title);
+      // console.log(data.query.pages[0].extract);
+      wildlifeStatsEl.append(data.query.pages[0].title)
+      wildlifeStatsEl.append(data.query.pages[0].extract)
+
+    });
+}
+
 
