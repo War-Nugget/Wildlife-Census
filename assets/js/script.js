@@ -9,9 +9,25 @@ var storedSearches = [];
 
 // ** Search function and Event Listeners**
 
-function runSearch() {
-  console.log("RUN SEARCH FUNCION CALLED");
-}
+var lat = document.getElementById(`latInput`).value;
+var lon = document.getElementById(`longInput`).value;
+
+var map;
+
+function runSearch(lat, lon) {
+  console.log("RUN SEARCH FUNCTION CALLED");
+  if (lat > 90 || lat < -90) {
+    window.alert ("Latitude value must be between -90 and 90")
+  } else if (lon > 180 || lon < -180) {
+    window.alert ("Longitude must be a value between -180 and 180")
+  } else {
+    map.flyTo({
+      center:[lon, lat],
+      zoom: 9,
+    });
+  }
+};
+
 
 function setEventListeners() {
   document.addEventListener("click", function (event) {
@@ -24,12 +40,13 @@ function setEventListeners() {
       console.log("Search Button Clicked");
       event.preventDefault();
       console.log(document.getElementById(`latInput`).value);
-      console.log(document.getElementById(`latInput`).value);
+      console.log(document.getElementById(`longInput`).value);
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
 
-      //  runSearch(); // RUN SEARCH FUNCTION
+
+       runSearch(lat, lon); // RUN SEARCH FUNCTION
     }
   });
 
@@ -57,164 +74,181 @@ setEventListeners();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
-var map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
-  center: [-84.388, 33.749],
-  zoom: 7,
+
+  // setting geolocation
+navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+  enableHighAccuracy: true
 });
 
-// Flying Squirrel Layer
-map.on("load", () => {
-  map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.7e7jfhov",
-  });
-  map.addLayer({
-    id: "ianjustinferris.7e7jfhov",
-    type: "circle",
-    source: "thene_Cunicularia_Dataset-bqcy9s",
-    "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
-    paint: {
-      "circle-radius": 3,
-      "circle-color": "#00FF99",
-      "circle-stroke-color": "#006666",
-      "circle-stroke-width": 1,
-      "circle-opacity": 0.75,
-    },
-  });
-});
+function successLocation(position) {
+  console.log(position)
+  setupMap([position.coords.longitude, position.coords.latitude])
+};
 
-// Panda Layer
-map.on("load", () => {
-  map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.8892homl",
-  });
-  map.addLayer({
-    id: "ianjustinferris.8892homl",
-    type: "circle",
-    source: "Ailuropoda_melanolenea_David_-57zylr",
-    "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
-    paint: {
-      "circle-radius": 5,
-      "circle-color": "#F4511E",
-      "circle-stroke-color": "#BF360C",
-      "circle-stroke-width": 1,
-      "circle-opacity": 1,
-    },
-  });
-});
+function errorLocation() {
+  setupMap([-2.24, 53.48]) //default long/lat to Manchester, UK
+};
 
-// Tiger Layer
-map.on("load", () => {
-  map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.1j46i1u6",
+//Put a setupMap function around map creation to add center parameter for geolocation
+function setupMap(center) {
+  map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/ianjustinferris/cl1vc6ihm002c14o9sj0c9vuy",
+    center: center,
+    zoom: 9,
   });
-  map.addLayer({
-    id: "ianjustinferris.1j46i1u6",
-    type: "circle",
-    source: "Panthera_Tigris_LInnaeus_1758-022kix",
-    "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#ff94c9",
-      "circle-stroke-color": "#CC6633 ",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
-  });
-});
 
+  // Flying Squirrel Layer
+  map.on("load", () => {
+    map.addSource("thene_Cunicularia_Dataset-bqcy9s", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.7e7jfhov",
+    });
+    map.addLayer({
+      id: "ianjustinferris.7e7jfhov",
+      type: "circle",
+      source: "thene_Cunicularia_Dataset-bqcy9s",
+      "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
+      paint: {
+        "circle-radius": 3,
+        "circle-color": "#00FF99",
+        "circle-stroke-color": "#006666",
+        "circle-stroke-width": 1,
+        "circle-opacity": 0.75,
+      },
+    });
+  });
 
-// Elephant Layer
-map.on("load", () => {
-  map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.5phjig5h",
+  // Panda Layer
+  map.on("load", () => {
+    map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.8892homl",
+    });
+    map.addLayer({
+      id: "ianjustinferris.8892homl",
+      type: "circle",
+      source: "Ailuropoda_melanolenea_David_-57zylr",
+      "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
+      paint: {
+        "circle-radius": 5,
+        "circle-color": "#F4511E",
+        "circle-stroke-color": "#BF360C",
+        "circle-stroke-width": 1,
+        "circle-opacity": 1,
+      },
+    });
   });
-  map.addLayer({
-    id: "ianjustinferris.5phjig5h",
-    type: "circle",
-    source: "Elephus_Maximus_Linnaeus-0d8jht",
-    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#3486eb",
-      "circle-stroke-color": "#b2d1f7",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
+
+  // Tiger Layer
+  map.on("load", () => {
+    map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.1j46i1u6",
+    });
+    map.addLayer({
+      id: "ianjustinferris.1j46i1u6",
+      type: "circle",
+      source: "Panthera_Tigris_LInnaeus_1758-022kix",
+      "source-layer": "Panthera_Tigris_LInnaeus_1758-022kix",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#ff94c9",
+        "circle-stroke-color": "#CC6633 ",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
   });
-});
 
 
-//Otter Layer
-map.on("load", () => {
-  map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.5eqsetbk",
+  // Elephant Layer
+  map.on("load", () => {
+    map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.5phjig5h",
+    });
+    map.addLayer({
+      id: "ianjustinferris.5phjig5h",
+      type: "circle",
+      source: "Elephus_Maximus_Linnaeus-0d8jht",
+      "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#3486eb",
+        "circle-stroke-color": "#b2d1f7",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
   });
-  map.addLayer({
-    id: "ianjustinferris.5eqsetbk",
-    type: "circle",
-    source: "Enhydra_Lutris_Merriam1904-6iungd",
-    "source-layer": "Enhydra_Lutris_Merriam1904-6iungd",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#eaf24b",
-      "circle-stroke-color": "#e6c837",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
-  });
-});
 
 
-//Snow Leopard Layer
-map.on("load", () => {
-  map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.avhp1spo",
+  //Otter Layer
+  map.on("load", () => {
+    map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.5eqsetbk",
+    });
+    map.addLayer({
+      id: "ianjustinferris.5eqsetbk",
+      type: "circle",
+      source: "Enhydra_Lutris_Merriam1904-6iungd",
+      "source-layer": "Enhydra_Lutris_Merriam1904-6iungd",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#eaf24b",
+        "circle-stroke-color": "#e6c837",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
   });
-  map.addLayer({
-    id: "ianjustinferris.avhp1spo",
-    type: "circle",
-    source: "Panthera_Uncia_Schreber1775-6vnt41",
-    "source-layer": "Panthera_Uncia_Schreber1775-6vnt41",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#a637e6",
-      "circle-stroke-color": "#cfa2e8",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
-  });
-});
 
 
-//Gorilla Layer
-map.on("load", () => {
-  map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
-    type: "vector",
-    url: "mapbox://ianjustinferris.0gafe0i4",
+  //Snow Leopard Layer
+  map.on("load", () => {
+    map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.avhp1spo",
+    });
+    map.addLayer({
+      id: "ianjustinferris.avhp1spo",
+      type: "circle",
+      source: "Panthera_Uncia_Schreber1775-6vnt41",
+      "source-layer": "Panthera_Uncia_Schreber1775-6vnt41",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#a637e6",
+        "circle-stroke-color": "#cfa2e8",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
   });
-  map.addLayer({
-    id: "ianjustinferris.0gafe0i4",
-    type: "circle",
-    source: "Gorilla_Beringei_Matschie1903-55g5ja",
-    "source-layer": "Gorilla_Beringei_Matschie1903-55g5ja",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#48f0f0",
-      "circle-stroke-color": "#0db8b8",
-      "circle-stroke-width": 1.5,
-      "circle-opacity": 0.85,
-    },
-  });
-});
 
+
+  //Gorilla Layer
+  map.on("load", () => {
+    map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.0gafe0i4",
+    });
+    map.addLayer({
+      id: "ianjustinferris.0gafe0i4",
+      type: "circle",
+      source: "Gorilla_Beringei_Matschie1903-55g5ja",
+      "source-layer": "Gorilla_Beringei_Matschie1903-55g5ja",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#48f0f0",
+        "circle-stroke-color": "#0db8b8",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
+}
 
 
 // TODO: Connect this function to the "Select a Species" drop down menu
