@@ -122,7 +122,8 @@ map.on("load", () => {
       "circle-opacity": 1,
     },
   });
-});
+ });
+
 
 // Tiger Layer
 map.on("load", () => {
@@ -165,6 +166,7 @@ map.on("load", () => {
     },
   });
 });
+  
 
 //Sea Otter Layer
 map.on("load", () => {
@@ -180,6 +182,10 @@ map.on("load", () => {
     paint: {
       "circle-radius": 3.5,
       "circle-color": "#f58207",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#2b9e49",
       "circle-stroke-color": "#CC6633 ",
       "circle-stroke-width": 1.5,
       "circle-opacity": 0.85,
