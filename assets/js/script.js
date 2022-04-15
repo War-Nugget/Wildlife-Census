@@ -172,6 +172,29 @@ map.on("load", () => {
 });
 
 
+//Snow Leopard Layer
+map.on("load", () => {
+  map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.avhp1spo",
+  });
+  map.addLayer({
+    id: "ianjustinferris.avhp1spo",
+    type: "circle",
+    source: "Panthera_Uncia_Schreber1775-6vnt41",
+    "source-layer": "Panthera_Uncia_Schreber1775-6vnt41",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#a637e6",
+      "circle-stroke-color": "#cfa2e8",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+
+
+
 // TODO: Connect this function to the "Select a Species" drop down menu
 // Get the JSON that contains the title and extract of the wikipedia article.
 function wikiGet(url) {
