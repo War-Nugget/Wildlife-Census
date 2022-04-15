@@ -127,7 +127,8 @@ map.on("load", () => {
   });
 });
 
-//Asian Elephant Layer
+
+// Elephant Layer
 map.on("load", () => {
   map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
     type: "vector",
@@ -137,18 +138,19 @@ map.on("load", () => {
     id: "ianjustinferris.5phjig5h",
     type: "circle",
     source: "Elephus_Maximus_Linnaeus-0d8jht",
-    "source-layer": "Elephus_Maximus_Linnaeus-0d8jhtx",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
     paint: {
       "circle-radius": 3.5,
-      "circle-color": "#ff94c9",
-      "circle-stroke-color": "#CC6633 ",
+      "circle-color": "#3486eb",
+      "circle-stroke-color": "#b2d1f7",
       "circle-stroke-width": 1.5,
       "circle-opacity": 0.85,
     },
   });
 });
 
-//Sea Otter Layer
+
+//Otter Layer
 map.on("load", () => {
   map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
     type: "vector",
@@ -161,12 +163,8 @@ map.on("load", () => {
     "source-layer": "Enhydra_Lutris_Merriam1904-6iungd",
     paint: {
       "circle-radius": 3.5,
-      "circle-color": "#f58207",
-    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
-    paint: {
-      "circle-radius": 3.5,
-      "circle-color": "#2b9e49",
-      "circle-stroke-color": "#CC6633 ",
+      "circle-color": "#eaf24b",
+      "circle-stroke-color": "#e6c837",
       "circle-stroke-width": 1.5,
       "circle-opacity": 0.85,
     },
