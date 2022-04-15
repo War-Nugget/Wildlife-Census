@@ -5,6 +5,19 @@ var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 
+const speciesOptions = {
+  tiger: "tiger",
+  flyingSquirrel: "flying_squirrel",
+  seaOtter: "sea_otter",
+  giantPanda: "giant_panda",
+  whoopingCrane: "whooping_crane",
+  blueWhale: "blue_whale",
+  elephant: "elephant",
+  snowLeopard: "snow_leopard",
+  gorilla: "gorilla"
+};
+
+
 var storedSearches = [];
 
 // ** Search function and Event Listeners**
@@ -253,24 +266,26 @@ function setupMap(center) {
 
 // TODO: Connect this function to the "Select a Species" drop down menu
 // Get the JSON that contains the title and extract of the wikipedia article.
-function wikiGet(url) {
+function wikiGet(species) {
+  console.log(species);
+  console.log("https://en.wikipedia.org/wiki/" + species)
+  var wikiArticle = "https://en.wikipedia.org/wiki/" + species
+  var endpointURL =
+    "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
+    species +
+    "&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
 
-  // The var below on line 151 is a test URL
-  // var flyingSquirrel = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=flying_squirrel&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
-
-  console.log(url);
-
-  fetch(url)
+  fetch(endpointURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
-      // console.log(data.query.pages[0].title);
-      // console.log(data.query.pages[0].extract);
-      wildlifeStatsEl.append(data.query.pages[0].title)
-      wildlifeStatsEl.append(data.query.pages[0].extract)
-
+      console.log(data);
+      console.log(data.query.pages[0].title);
+      console.log(data.query.pages[0].extract);
+      wildlifeStatsEl.append(data.query.pages[0].title + ": ");
+      wildlifeStatsEl.append(data.query.pages[0].extract);
+      wildlifeStatsEl.append("For more information visit the following link: " + wikiArticle);
     });
 }
 
