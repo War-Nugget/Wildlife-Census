@@ -173,28 +173,6 @@ map.on("load", () => {
   });
 });
 
-// TODO: Connect this function to the "Select a Species" drop down menu
-// Get the JSON that contains the title and extract of the wikipedia article.
-function wikiGet(url) {
-
-  // The var below on line 151 is a test URL
-  // var flyingSquirrel = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=flying_squirrel&formatversion=2&exsentences=10&exlimit=1&explaintext=1";
-
-  console.log(url);
-
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // console.log(data);
-      // console.log(data.query.pages[0].title);
-      // console.log(data.query.pages[0].extract);
-      wildlifeStatsEl.append(data.query.pages[0].title)
-      wildlifeStatsEl.append(data.query.pages[0].extract)
-
-    });
-}
 
 // TODO: Connect this function to the "Select a Species" drop down menu
 // Get the JSON that contains the title and extract of the wikipedia article.
@@ -218,3 +196,5 @@ function wikiGet(url) {
 
     });
 }
+
+
