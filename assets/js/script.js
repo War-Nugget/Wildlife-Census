@@ -155,10 +155,31 @@ map.on("load", () => {
     id: "ianjustinferris.5phjig5h",
     type: "circle",
     source: "Elephus_Maximus_Linnaeus-0d8jht",
-    "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
+    "source-layer": "Elephus_Maximus_Linnaeus-0d8jhtx",
     paint: {
       "circle-radius": 3.5,
-      "circle-color": "#2b9e49",
+      "circle-color": "#ff94c9",
+      "circle-stroke-color": "#CC6633 ",
+      "circle-stroke-width": 1.5,
+      "circle-opacity": 0.85,
+    },
+  });
+});
+
+//Sea Otter Layer
+map.on("load", () => {
+  map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
+    type: "vector",
+    url: "mapbox://ianjustinferris.5eqsetbk",
+  });
+  map.addLayer({
+    id: "ianjustinferris.5eqsetbk",
+    type: "circle",
+    source: "Enhydra_Lutris_Merriam1904-6iungd",
+    "source-layer": "Enhydra_Lutris_Merriam1904-6iungd",
+    paint: {
+      "circle-radius": 3.5,
+      "circle-color": "#f58207",
       "circle-stroke-color": "#CC6633 ",
       "circle-stroke-width": 1.5,
       "circle-opacity": 0.85,
