@@ -45,3 +45,20 @@ body,
   height: 400px;
   width: 100%;
 }
+
+.citationsTitle {
+margin-top: 10px;
+}
+
+.citationsHead {
+  margin-top: 15px;
+}
+
+.headIcon {
+  max-height: 115px;
+  width:490px;
+}
+
+#projectTitle {
+display: block;
+}
