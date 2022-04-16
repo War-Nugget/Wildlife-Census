@@ -265,7 +265,7 @@ function setupMap(center) {
     });
   });
 
-  //Tasmanian Devil
+  //Tasmanian Devil Layer
   map.on("load", () => {
     map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
       type: "vector",
@@ -280,6 +280,27 @@ function setupMap(center) {
         "circle-radius": 3.5,
         "circle-color": "#861800",
         "circle-stroke-color": "#E63009",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
+
+  //Orangutan Layer
+  map.on("load", () => {
+    map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.1bwz4brn",
+    });
+    map.addLayer({
+      id: "ianjustinferris.1bwz4brn",
+      type: "circle",
+      source: "Pongo_Pygmaeus_Linnaeus_1760-4d8s3p",
+      "source-layer": "Pongo_Pygmaeus_Linnaeus_1760-4d8s3p",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#1FE415",
+        "circle-stroke-color": "#ACD9E5",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
