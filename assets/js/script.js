@@ -65,14 +65,9 @@ function setEventListeners() {
       wikiGetImage();
     }
 
-    newSearch.addEventListener("click", function (event) {
-      var element = event.target;
-
-      if (element.matches("#newSearch")) {
-        console.log("NEW Search Button Clicked");
-        event.preventDefault();
-        //  clearResults(); // CLEAR SEARCH RESULTS FOR NEW SEARCH
-      }
+    document.addEventListener("submit", function (event) {
+      // var element = event.target;
+      event.preventDefault();
     });
 
     clearStorage.addEventListener("click", function (event) {
@@ -290,6 +285,7 @@ function wikiGet(species) {
       console.log(data);
       console.log(data.query.pages[0].title);
       console.log(data.query.pages[0].extract);
+      wildlifeStatsEl.innerHTML = "";
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
 
