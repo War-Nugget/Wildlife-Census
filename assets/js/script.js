@@ -318,3 +318,33 @@ function wikiGetImage(species) {
 // Uncomment these 2 functions if you'd like to experiment with the speciesOptions object
 // wikiGetImage(speciesOptions.gorilla)
 // wikiGet(speciesOptions.gorilla)
+
+// TODO: USE THIS FUNCTION TO DISPLAY THE PROPER SPECIES ON THE PAGE
+// function runDisplayInfo(species) {
+//   console.log("Species chosen: " + species)
+  
+//   if (species === "Giant Panda") {
+//     wikiGet(speciesOptions.giantPanda)
+//     // wikiGetImage(speciesOptions.giantPanda)
+//   } 
+//   if (species === "Tiger") {
+//     wikiGet(speciesOptions.tiger)
+//     // wikiGetImage(speciesOptions.tiger)
+//   }
+//   if (species === "Whooping Crane") {
+//     wikiGet(speciesOptions.whoopingCrane)
+//     // wikiGetImage(speciesOptions.whoopingCrane)
+//   } 
+//   if (species === "Blue Whale") {
+//     wikiGet(speciesOptions.blueWhale)
+//     // wikiGetImage(speciesOptions.blueWhale)
+//   } 
+//   if (species === "Flying Squirrel") {
+//     wikiGet(speciesOptions.flyingSquirrel)
+//     // wikiGetImage(speciesOptions.flyingSquirrel)
+//   } 
+//   if (species === "Sea Otters") {
+//     wikiGet(speciesOptions.seaOtter)
+//     // wikiGetImage(speciesOptions.seaOtter)
+//   } 
+// }
