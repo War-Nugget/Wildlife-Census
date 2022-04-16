@@ -30,7 +30,18 @@
     <header>
       <div class="input-field col s2.5  left">
 
-        <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn" >Search</button></input></form>
+        <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn modal-trigger" >Search</button></input></form>
+      </div>
+
+      <div class="modal" id="badLat">
+        <div class="modal-content">
+          <h3>Invalid Latitude and/or Longitude</h3>
+          <p>Latitude must be a value between -90 and 90 and longitude muse be a value betwen -180 and 180.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn modal-close">OK</button>
+        </div>
       </div>
 
     <div class="input-field col s2.5 left">
