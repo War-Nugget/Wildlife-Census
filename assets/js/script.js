@@ -289,10 +289,10 @@ function wikiGetImage(species) {
   var addUnderscore = species.replace(" ", "_")
   species = document.getElementById(`speciesMenu`).value;
   console.log("WIKIGETIMAGE FUNCTION CALL" + species)
-  console.log(addUnderscore)
+  console.log("UNDERSCORE TEST: " + addUnderscore)
   var imageURL =
     "https://en.wikipedia.org/w/api.php?action=query&titles=" +
-    species +
+    addUnderscore +
     "&prop=pageimages&format=json&pithumbsize=200&origin=*";
   fetch(imageURL)
     .then(function (response) {
@@ -319,27 +319,27 @@ function runDisplayInfo(species) {
   wildlifeStatsEl.innerHTML = ""
   wildlifeImgEl.innerHTML = ""
   if (species === "Giant Panda") {
-    // wikiGet(speciesOptions.giantPanda)
+    wikiGet(speciesOptions.giantPanda)
     wikiGetImage(speciesOptions.giantPanda)
   } 
   if (species === "Tiger") {
-    // wikiGet(speciesOptions.tiger)
+    wikiGet(speciesOptions.tiger)
     wikiGetImage(speciesOptions.tiger)
   }
   if (species === "Whooping Crane") {
-    // wikiGet(speciesOptions.whoopingCrane)
+    wikiGet(speciesOptions.whoopingCrane)
     wikiGetImage(speciesOptions.whoopingCrane)
   } 
   if (species === "Blue Whale") {
-    // wikiGet(speciesOptions.blueWhale)
+    wikiGet(speciesOptions.blueWhale)
     wikiGetImage(speciesOptions.blueWhale)
   } 
   if (species === "Flying Squirrel") {
-    // wikiGet(speciesOptions.flyingSquirrel)
+    wikiGet(speciesOptions.flyingSquirrel)
     wikiGetImage(speciesOptions.flyingSquirrel)
   } 
   if (species === "Sea Otters") {
-    // wikiGet(speciesOptions.seaOtter)
+    wikiGet(speciesOptions.seaOtter)
     wikiGetImage(speciesOptions.seaOtter)
   } 
 }
