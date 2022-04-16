@@ -58,11 +58,10 @@ function setEventListeners() {
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
-
-      wildlifeImgEl.innerHTML = `<h2> ${species} </h2>`;
+      console.log("THIS SPECIES WAS CHOSEN: " + species)
       runSearch(lat, lon); // RUN SEARCH FUNCTION
-      wikiGet();
-      wikiGetImage();
+      runDisplayInfo(species)
+
     }
 
     document.addEventListener("submit", function (event) {
@@ -285,15 +284,9 @@ function setupMap(center) {
 
 // Get the JSON that contains the title and extract of the wikipedia article.
 function wikiGet(species) {
-  species = document.getElementById(`speciesMenu`).value;
   console.log(species);
-  console.log("https://en.wikipedia.org/wiki/" + species);
-  var wikiArticle =
-    "<a target=top href=https://en.wikipedia.org/wiki/" +
-    species +
-    ">https://en.wikipedia.org/wiki/" +
-    species +
-    "</a>";
+  console.log("https://en.wikipedia.org/wiki/" + species)
+  var wikiArticle = "https://en.wikipedia.org/wiki/" + species
   var endpointURL =
     "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
     species +
@@ -307,20 +300,21 @@ function wikiGet(species) {
       console.log(data);
       console.log(data.query.pages[0].title);
       console.log(data.query.pages[0].extract);
-      wildlifeStatsEl.innerHTML = "";
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
+      wildlifeStatsEl.append("For more information visit the following link: " + wikiArticle);
 
-      wikiLinkEl.innerHTML = `For more information visit the following link: ${wikiArticle}`;
     });
 }
-
 // Get the JSON that contains the thumbnail for the wikipedia article.
 function wikiGetImage(species) {
+  var addUnderscore = species.replace(" ", "_")
   species = document.getElementById(`speciesMenu`).value;
+  console.log("WIKIGETIMAGE FUNCTION CALL" + species)
+  console.log("UNDERSCORE TEST: " + addUnderscore)
   var imageURL =
     "https://en.wikipedia.org/w/api.php?action=query&titles=" +
-    species +
+    addUnderscore +
     "&prop=pageimages&format=json&pithumbsize=200&origin=*";
   fetch(imageURL)
     .then(function (response) {
@@ -340,3 +334,34 @@ function wikiGetImage(species) {
 // Uncomment these 2 functions if you'd like to experiment with the speciesOptions object
 // wikiGetImage(speciesOptions.gorilla)
 // wikiGet(speciesOptions.gorilla)
+
+// TODO: USE THIS FUNCTION TO DISPLAY THE PROPER SPECIES ON THE PAGE
+function runDisplayInfo(species) {
+  console.log("Species chosen: " + species)
+  wildlifeStatsEl.innerHTML = ""
+  wildlifeImgEl.innerHTML = ""
+  if (species === "Giant Panda") {
+    wikiGet(speciesOptions.giantPanda)
+    wikiGetImage(speciesOptions.giantPanda)
+  } 
+  if (species === "Tiger") {
+    wikiGet(speciesOptions.tiger)
+    wikiGetImage(speciesOptions.tiger)
+  }
+  if (species === "Whooping Crane") {
+    wikiGet(speciesOptions.whoopingCrane)
+    wikiGetImage(speciesOptions.whoopingCrane)
+  } 
+  if (species === "Blue Whale") {
+    wikiGet(speciesOptions.blueWhale)
+    wikiGetImage(speciesOptions.blueWhale)
+  } 
+  if (species === "Flying Squirrel") {
+    wikiGet(speciesOptions.flyingSquirrel)
+    wikiGetImage(speciesOptions.flyingSquirrel)
+  } 
+  if (species === "Sea Otters") {
+    wikiGet(speciesOptions.seaOtter)
+    wikiGetImage(speciesOptions.seaOtter)
+  } 
+}
