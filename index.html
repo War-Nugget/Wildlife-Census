@@ -27,47 +27,56 @@
 
   <body>
     <div class="container">
-      <header>
-        <div class=""row">
-          <div class="input-field col s2.5  left">
-  
-            <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn" >Search</button></input></form>
-          </div>
-  
-          <div class="input-field col s2.5 left">
-           <form><input
-            id="speciesMenu"
-            list="species"
-            class="col-md-9"
-            name="Species"
-            placeholder="Select a Species"
-            />
-  
-            <datalist id="species">
-            <option value="Giant Panda"></option>
-            <option value="Tiger"></option>
-            <option value="Whooping Crane"></option>
-            <option value="Blue Whale"></option>
-            <option value="Flying Squirrel"></option>
-            <option value="Sea Otters"></option>
-  
-              <!-- <option value="Geese">Geese</option>
-              <option value="Groundhog">Groundhog</option>
-              <option value="Possom">Possom</option>
-              <option value="Rat Snake">Rat Snake</option>
-              <option value="Redtail Hawk">Redtail Hawk</option>
-              <option value="Wildcat">Wildcat</option> -->
-  
-              </datalist>
-              </form>
-          </div>
-  
-          <div>
-            <div id="projectTitle" class="col s6">
-                <h1 class="right">Endangered Wildlife Census </h1>
-                <img class="right headIcon"  src="./assets/images/MapIcon.JPG">
-            </div>
-          </div>
+      <div class=""row">
+    <header>
+      <div class="input-field col s2.5  left">
+
+        <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn modal-trigger" >Search</button></input></form>
+      </div>
+
+      <div class="modal" id="badLat">
+        <div class="modal-content">
+          <h3>Invalid Latitude and/or Longitude</h3>
+          <p>Latitude must be a value between -90 and 90 and longitude muse be a value betwen -180 and 180.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn modal-close">OK</button>
+        </div>
+      </div>
+
+    <div class="input-field col s2.5 left">
+      <form><input
+      id="speciesMenu"
+      list="species"
+      class="col-md-9"
+      name="Species"
+      placeholder="Select a Species"
+    />
+
+    <datalist id="species">
+      <option value="Giant Panda"></option>
+      <option value="Tiger"></option>
+      <option value="Whooping Crane"></option>
+      <option value="Blue Whale"></option>
+      <option value="Flying Squirrel"></option>
+      <option value="Sea Otters"></option>
+
+      <!-- <option value="Geese">Geese</option>
+      <option value="Groundhog">Groundhog</option>
+      <option value="Possom">Possom</option>
+      <option value="Rat Snake">Rat Snake</option>
+      <option value="Redtail Hawk">Redtail Hawk</option>
+      <option value="Wildcat">Wildcat</option> -->
+
+    </datalist>
+    </form>
+    </div>
+
+      <div>
+        <div id="projectTitle" class="col s6">
+          <h1 class="right">Endangered Wildlife Census </h1>
+          <img class="right headIcon"  src="./assets/images/MapIcon.JPG">
         </div>
       </header>
 

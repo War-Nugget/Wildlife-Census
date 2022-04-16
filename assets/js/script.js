@@ -5,6 +5,7 @@ var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
+var latitudeModalEl = document.querySelector("#badLat");
 var wikiLinkEl = document.querySelector("#wikiLink");
 
 const speciesOptions = {
@@ -28,12 +29,20 @@ var lon = document.getElementById(`longInput`).value;
 
 var map;
 
+var latModal;
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var latError = document.querySelector('.modal');
+//   M.Modal.init(latError, {});
+// });
+
 function runSearch(lat, lon) {
   console.log("RUN SEARCH FUNCTION CALLED");
-  if (lat > 90 || lat < -90) {
-    window.alert("Latitude value must be between -90 and 90");
-  } else if (lon > 180 || lon < -180) {
-    window.alert("Longitude must be a value between -180 and 180");
+  if (lat > 90 || lat < -90 || lon > 180 || lon < -180) {
+    // debugger;  
+    // var latError = document.querySelector('#badLat');
+    //   M.Modal.init(latError, {});
+    latModal.open();
   } else {
     map.flyTo({
       center: [lon, lat],
@@ -45,6 +54,8 @@ function runSearch(lat, lon) {
 function setEventListeners() {
   document.addEventListener("click", function (event) {
     var element = event.target;
+
+    latModal = M.Modal.init(latitudeModalEl, {});
 
     var lat = document.getElementById(`latInput`).value;
     var lon = document.getElementById(`longInput`).value;
@@ -58,11 +69,10 @@ function setEventListeners() {
       console.log(document.getElementById(`speciesMenu`).value);
       console.log(lat);
       console.log(lon);
-
-      wildlifeImgEl.innerHTML = `<h2> ${species} </h2>`;
+      console.log("THIS SPECIES WAS CHOSEN: " + species)
       runSearch(lat, lon); // RUN SEARCH FUNCTION
-      wikiGet();
-      wikiGetImage();
+      runDisplayInfo(species)
+
     }
 
     document.addEventListener("submit", function (event) {
@@ -142,11 +152,11 @@ function setupMap(center) {
       source: "Ailuropoda_melanolenea_David_-57zylr",
       "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
       paint: {
-        "circle-radius": 5,
+        "circle-radius": 3.5,
         "circle-color": "#F4511E",
         "circle-stroke-color": "#BF360C",
-        "circle-stroke-width": 1,
-        "circle-opacity": 1,
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
       },
     });
   });
@@ -255,6 +265,28 @@ function setupMap(center) {
       },
     });
   });
+
+
+  //Tasmanian Devil
+  map.on("load", () => {
+    map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.bg9oh3sj",
+    });
+    map.addLayer({
+      id: "ianjustinferris.bg9oh3sj",
+      type: "circle",
+      source: "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      "source-layer": "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#861800",
+        "circle-stroke-color": "#E63009",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
 }
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
@@ -263,15 +295,9 @@ function setupMap(center) {
 
 // Get the JSON that contains the title and extract of the wikipedia article.
 function wikiGet(species) {
-  species = document.getElementById(`speciesMenu`).value;
   console.log(species);
-  console.log("https://en.wikipedia.org/wiki/" + species);
-  var wikiArticle =
-    "<a target=top href=https://en.wikipedia.org/wiki/" +
-    species +
-    ">https://en.wikipedia.org/wiki/" +
-    species +
-    "</a>";
+  console.log("https://en.wikipedia.org/wiki/" + species)
+  var wikiArticle = "https://en.wikipedia.org/wiki/" + species
   var endpointURL =
     "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
     species +
@@ -285,20 +311,21 @@ function wikiGet(species) {
       console.log(data);
       console.log(data.query.pages[0].title);
       console.log(data.query.pages[0].extract);
-      wildlifeStatsEl.innerHTML = "";
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
+      wildlifeStatsEl.append("For more information visit the following link: " + wikiArticle);
 
-      wikiLinkEl.innerHTML = `For more information visit the following link: ${wikiArticle}`;
     });
 }
-
 // Get the JSON that contains the thumbnail for the wikipedia article.
 function wikiGetImage(species) {
+  var addUnderscore = species.replace(" ", "_")
   species = document.getElementById(`speciesMenu`).value;
+  console.log("WIKIGETIMAGE FUNCTION CALL" + species)
+  console.log("UNDERSCORE TEST: " + addUnderscore)
   var imageURL =
     "https://en.wikipedia.org/w/api.php?action=query&titles=" +
-    species +
+    addUnderscore +
     "&prop=pageimages&format=json&pithumbsize=200&origin=*";
   fetch(imageURL)
     .then(function (response) {
@@ -318,3 +345,34 @@ function wikiGetImage(species) {
 // Uncomment these 2 functions if you'd like to experiment with the speciesOptions object
 // wikiGetImage(speciesOptions.gorilla)
 // wikiGet(speciesOptions.gorilla)
+
+// TODO: USE THIS FUNCTION TO DISPLAY THE PROPER SPECIES ON THE PAGE
+function runDisplayInfo(species) {
+  console.log("Species chosen: " + species)
+  wildlifeStatsEl.innerHTML = ""
+  wildlifeImgEl.innerHTML = ""
+  if (species === "Giant Panda") {
+    wikiGet(speciesOptions.giantPanda)
+    wikiGetImage(speciesOptions.giantPanda)
+  } 
+  if (species === "Tiger") {
+    wikiGet(speciesOptions.tiger)
+    wikiGetImage(speciesOptions.tiger)
+  }
+  if (species === "Whooping Crane") {
+    wikiGet(speciesOptions.whoopingCrane)
+    wikiGetImage(speciesOptions.whoopingCrane)
+  } 
+  if (species === "Blue Whale") {
+    wikiGet(speciesOptions.blueWhale)
+    wikiGetImage(speciesOptions.blueWhale)
+  } 
+  if (species === "Flying Squirrel") {
+    wikiGet(speciesOptions.flyingSquirrel)
+    wikiGetImage(speciesOptions.flyingSquirrel)
+  } 
+  if (species === "Sea Otters") {
+    wikiGet(speciesOptions.seaOtter)
+    wikiGetImage(speciesOptions.seaOtter)
+  } 
+}
