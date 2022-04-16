@@ -141,11 +141,11 @@ function setupMap(center) {
       source: "Ailuropoda_melanolenea_David_-57zylr",
       "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
       paint: {
-        "circle-radius": 5,
+        "circle-radius": 3.5,
         "circle-color": "#F4511E",
         "circle-stroke-color": "#BF360C",
-        "circle-stroke-width": 1,
-        "circle-opacity": 1,
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
       },
     });
   });
@@ -249,6 +249,28 @@ function setupMap(center) {
         "circle-radius": 3.5,
         "circle-color": "#48f0f0",
         "circle-stroke-color": "#0db8b8",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
+
+
+  //Tasmanian Devil
+  map.on("load", () => {
+    map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.bg9oh3sj",
+    });
+    map.addLayer({
+      id: "ianjustinferris.bg9oh3sj",
+      type: "circle",
+      source: "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      "source-layer": "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#861800",
+        "circle-stroke-color": "#E63009",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
