@@ -289,4 +289,27 @@ function wikiGet(species) {
     });
 }
 
+// Get the JSON that contains the thumbnail for the wikipedia article.
+function wikiGetImage(species) {
+  var imageURL =
+    "http://en.wikipedia.org/w/api.php?action=query&titles=" +
+    species +
+    "&prop=pageimages&format=json&pithumbsize=200&origin=*";
+  fetch(imageURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var pageID = Object.keys(data.query.pages)[0];
+      var thumbnailFromPageID = data.query.pages[pageID].thumbnail.source;
+      console.log(thumbnailFromPageID);
+      imgElForThumbnail = document.createElement("img");
+      imgElForThumbnail.setAttribute("src", thumbnailFromPageID);
+      wildlifeStatsEl.append(imgElForThumbnail);
+    });
+}
 
+// Uncomment these 2 functions if you'd like to experiment with the speciesOptions object
+// wikiGetImage(speciesOptions.gorilla)
+// wikiGet(speciesOptions.gorilla)
