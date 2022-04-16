@@ -296,7 +296,7 @@ function wikiGet(species) {
 function wikiGetImage(species) {
   species = document.getElementById(`speciesMenu`).value;
   var imageURL =
-    "http://en.wikipedia.org/w/api.php?action=query&titles=" +
+    "https://en.wikipedia.org/w/api.php?action=query&titles=" +
     species +
     "&prop=pageimages&format=json&pithumbsize=200&origin=*";
   fetch(imageURL)
