@@ -5,6 +5,7 @@ var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
+var latitudeModalEl = document.querySelector("#badLat");
 var wikiLinkEl = document.querySelector("#wikiLink");
 
 const speciesOptions = {
@@ -28,12 +29,20 @@ var lon = document.getElementById(`longInput`).value;
 
 var map;
 
+var latModal;
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var latError = document.querySelector('.modal');
+//   M.Modal.init(latError, {});
+// });
+
 function runSearch(lat, lon) {
   console.log("RUN SEARCH FUNCTION CALLED");
-  if (lat > 90 || lat < -90) {
-    window.alert("Latitude value must be between -90 and 90");
-  } else if (lon > 180 || lon < -180) {
-    window.alert("Longitude must be a value between -180 and 180");
+  if (lat > 90 || lat < -90 || lon > 180 || lon < -180) {
+    // debugger;  
+    // var latError = document.querySelector('#badLat');
+    //   M.Modal.init(latError, {});
+    latModal.open();
   } else {
     map.flyTo({
       center: [lon, lat],
@@ -45,6 +54,8 @@ function runSearch(lat, lon) {
 function setEventListeners() {
   document.addEventListener("click", function (event) {
     var element = event.target;
+
+    latModal = M.Modal.init(latitudeModalEl, {});
 
     var lat = document.getElementById(`latInput`).value;
     var lon = document.getElementById(`longInput`).value;
