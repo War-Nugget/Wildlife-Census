@@ -51,17 +51,13 @@ body,
 }
 
 .citationsTitle {
-margin-top: 10px;
+margin-top: 100px;
 }
 
 .citationsHead {
   margin-top: 41px;
 }
 
-.headIcon {
-  max-height: 115px;
-  width:490px;
-}
 
 #projectTitle {
 display: block;
