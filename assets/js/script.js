@@ -351,7 +351,7 @@ function wikiGetImage(species) {
   var imageURL =
     "https://en.wikipedia.org/w/api.php?action=query&titles=" +
     addUnderscore +
-    "&prop=pageimages&format=json&pithumbsize=200&origin=*";
+    "&prop=pageimages&format=json&pithumbsize=300&origin=*";
   fetch(imageURL)
     .then(function (response) {
       return response.json();
@@ -361,8 +361,11 @@ function wikiGetImage(species) {
       var pageID = Object.keys(data.query.pages)[0];
       var thumbnailFromPageID = data.query.pages[pageID].thumbnail.source;
       console.log(thumbnailFromPageID);
+      createH2 = document.createElement("h2")
+      createH2.innerHTML = species
       imgElForThumbnail = document.createElement("img");
       imgElForThumbnail.setAttribute("src", thumbnailFromPageID);
+      wildlifeImgEl.append(createH2)
       wildlifeImgEl.append(imgElForThumbnail);
     });
 }
