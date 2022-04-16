@@ -4,6 +4,7 @@ var species = document.getElementById(`speciesMenu`).value;
 var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
+var wildlifeImgEl = document.querySelector("#wildlifeImg");
 
 const speciesOptions = {
   tiger: "tiger",
@@ -14,9 +15,8 @@ const speciesOptions = {
   blueWhale: "blue_whale",
   elephant: "elephant",
   snowLeopard: "snow_leopard",
-  gorilla: "gorilla"
+  gorilla: "gorilla",
 };
-
 
 var storedSearches = [];
 
@@ -30,17 +30,16 @@ var map;
 function runSearch(lat, lon) {
   console.log("RUN SEARCH FUNCTION CALLED");
   if (lat > 90 || lat < -90) {
-    window.alert ("Latitude value must be between -90 and 90")
+    window.alert("Latitude value must be between -90 and 90");
   } else if (lon > 180 || lon < -180) {
-    window.alert ("Longitude must be a value between -180 and 180")
+    window.alert("Longitude must be a value between -180 and 180");
   } else {
     map.flyTo({
-      center:[lon, lat],
+      center: [lon, lat],
       zoom: 9,
     });
   }
-};
-
+}
 
 function setEventListeners() {
   document.addEventListener("click", function (event) {
@@ -48,6 +47,7 @@ function setEventListeners() {
 
     var lat = document.getElementById(`latInput`).value;
     var lon = document.getElementById(`longInput`).value;
+    var species = document.getElementById(`speciesMenu`).value;
 
     if (element.matches("#searchBtn")) {
       console.log("Search Button Clicked");
@@ -58,28 +58,30 @@ function setEventListeners() {
       console.log(lat);
       console.log(lon);
 
-
-       runSearch(lat, lon); // RUN SEARCH FUNCTION
+      wildlifeImgEl.innerHTML = `<h2> ${species} </h2>`;
+      runSearch(lat, lon); // RUN SEARCH FUNCTION
+      wikiGet();
+      wikiGetImage();
     }
-  });
 
-  newSearch.addEventListener("click", function (event) {
-    var element = event.target;
+    newSearch.addEventListener("click", function (event) {
+      var element = event.target;
 
-    if (element.matches("#newSearch")) {
-      console.log("NEW Search Button Clicked");
-      event.preventDefault();
-      //  clearResults(); // CLEAR SEARCH RESULTS FOR NEW SEARCH
-    }
-  });
+      if (element.matches("#newSearch")) {
+        console.log("NEW Search Button Clicked");
+        event.preventDefault();
+        //  clearResults(); // CLEAR SEARCH RESULTS FOR NEW SEARCH
+      }
+    });
 
-  clearStorage.addEventListener("click", function (event) {
-    var element = event.target;
+    clearStorage.addEventListener("click", function (event) {
+      var element = event.target;
 
-    if (element.matches("#clearStorage")) {
-      console.log("Clear Storage Button Clicked");
-      localStorage.clear(); // CLEAR STORAGE
-    }
+      if (element.matches("#clearStorage")) {
+        console.log("Clear Storage Button Clicked");
+        localStorage.clear(); // CLEAR STORAGE
+      }
+    });
   });
 }
 
@@ -88,19 +90,19 @@ setEventListeners();
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
 
-  // setting geolocation
+// setting geolocation
 navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-  enableHighAccuracy: true
+  enableHighAccuracy: true,
 });
 
 function successLocation(position) {
-  console.log(position)
-  setupMap([position.coords.longitude, position.coords.latitude])
-};
+  console.log(position);
+  setupMap([position.coords.longitude, position.coords.latitude]);
+}
 
 function errorLocation() {
-  setupMap([-2.24, 53.48]) //default long/lat to Manchester, UK
-};
+  setupMap([-2.24, 53.48]); //default long/lat to Manchester, UK
+}
 
 //Put a setupMap function around map creation to add center parameter for geolocation
 function setupMap(center) {
@@ -174,7 +176,6 @@ function setupMap(center) {
     });
   });
 
-
   // Elephant Layer
   map.on("load", () => {
     map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
@@ -195,7 +196,6 @@ function setupMap(center) {
       },
     });
   });
-
 
   //Otter Layer
   map.on("load", () => {
@@ -218,7 +218,6 @@ function setupMap(center) {
     });
   });
 
-
   //Snow Leopard Layer
   map.on("load", () => {
     map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
@@ -239,7 +238,6 @@ function setupMap(center) {
       },
     });
   });
-
 
   //Gorilla Layer
   map.on("load", () => {
@@ -263,13 +261,16 @@ function setupMap(center) {
   });
 }
 
+// TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
 
-// TODO: Connect this function to the "Select a Species" drop down menu
+// TODO: Fix Spaces in link input - input is working on single word searches, but not our animal values with spaces.
+
 // Get the JSON that contains the title and extract of the wikipedia article.
 function wikiGet(species) {
+  species = document.getElementById(`speciesMenu`).value;
   console.log(species);
-  console.log("https://en.wikipedia.org/wiki/" + species)
-  var wikiArticle = "https://en.wikipedia.org/wiki/" + species
+  console.log("https://en.wikipedia.org/wiki/" + species);
+  var wikiArticle = "https://en.wikipedia.org/wiki/" + species;
   var endpointURL =
     "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
     species +
@@ -285,12 +286,15 @@ function wikiGet(species) {
       console.log(data.query.pages[0].extract);
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
-      wildlifeStatsEl.append("For more information visit the following link: " + wikiArticle);
+      wildlifeStatsEl.append(
+        "For more information visit the following link: " + wikiArticle
+      );
     });
 }
 
 // Get the JSON that contains the thumbnail for the wikipedia article.
 function wikiGetImage(species) {
+  species = document.getElementById(`speciesMenu`).value;
   var imageURL =
     "http://en.wikipedia.org/w/api.php?action=query&titles=" +
     species +
@@ -306,7 +310,7 @@ function wikiGetImage(species) {
       console.log(thumbnailFromPageID);
       imgElForThumbnail = document.createElement("img");
       imgElForThumbnail.setAttribute("src", thumbnailFromPageID);
-      wildlifeStatsEl.append(imgElForThumbnail);
+      wildlifeImgEl.append(imgElForThumbnail);
     });
 }
 
