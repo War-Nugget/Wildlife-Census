@@ -6,6 +6,7 @@ var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
 var latitudeModalEl = document.querySelector("#badLat");
+var wikiLinkEl = document.querySelector("#wikiLink");
 
 const speciesOptions = {
   tiger: "tiger",
@@ -75,14 +76,9 @@ function setEventListeners() {
       wikiGetImage();
     }
 
-    newSearch.addEventListener("click", function (event) {
-      var element = event.target;
-
-      if (element.matches("#newSearch")) {
-        console.log("NEW Search Button Clicked");
-        event.preventDefault();
-        //  clearResults(); // CLEAR SEARCH RESULTS FOR NEW SEARCH
-      }
+    document.addEventListener("submit", function (event) {
+      // var element = event.target;
+      event.preventDefault();
     });
 
     clearStorage.addEventListener("click", function (event) {
@@ -157,11 +153,11 @@ function setupMap(center) {
       source: "Ailuropoda_melanolenea_David_-57zylr",
       "source-layer": "Ailuropoda_melanolenea_David_-57zylr",
       paint: {
-        "circle-radius": 5,
+        "circle-radius": 3.5,
         "circle-color": "#F4511E",
         "circle-stroke-color": "#BF360C",
-        "circle-stroke-width": 1,
-        "circle-opacity": 1,
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
       },
     });
   });
@@ -270,6 +266,28 @@ function setupMap(center) {
       },
     });
   });
+
+
+  //Tasmanian Devil
+  map.on("load", () => {
+    map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.bg9oh3sj",
+    });
+    map.addLayer({
+      id: "ianjustinferris.bg9oh3sj",
+      type: "circle",
+      source: "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      "source-layer": "Sarcophilus_Harrisi_Boltard_1-8biooa",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#861800",
+        "circle-stroke-color": "#E63009",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
 }
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
@@ -281,7 +299,12 @@ function wikiGet(species) {
   species = document.getElementById(`speciesMenu`).value;
   console.log(species);
   console.log("https://en.wikipedia.org/wiki/" + species);
-  var wikiArticle = "https://en.wikipedia.org/wiki/" + species;
+  var wikiArticle =
+    "<a target=top href=https://en.wikipedia.org/wiki/" +
+    species +
+    ">https://en.wikipedia.org/wiki/" +
+    species +
+    "</a>";
   var endpointURL =
     "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
     species +
@@ -295,11 +318,11 @@ function wikiGet(species) {
       console.log(data);
       console.log(data.query.pages[0].title);
       console.log(data.query.pages[0].extract);
+      wildlifeStatsEl.innerHTML = "";
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
-      wildlifeStatsEl.append(
-        "For more information visit the following link: " + wikiArticle
-      );
+
+      wikiLinkEl.innerHTML = `For more information visit the following link: ${wikiArticle}`;
     });
 }
 
