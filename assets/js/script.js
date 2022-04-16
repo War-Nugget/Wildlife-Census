@@ -5,6 +5,7 @@ var newSearch = document.getElementById("newSearch");
 var clearStorage = document.getElementById("clearStorage");
 var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
+var wikiLinkEl = document.querySelector("#wikiLink");
 
 const speciesOptions = {
   tiger: "tiger",
@@ -270,7 +271,12 @@ function wikiGet(species) {
   species = document.getElementById(`speciesMenu`).value;
   console.log(species);
   console.log("https://en.wikipedia.org/wiki/" + species);
-  var wikiArticle = "https://en.wikipedia.org/wiki/" + species;
+  var wikiArticle =
+    "<a target=top href=https://en.wikipedia.org/wiki/" +
+    species +
+    ">https://en.wikipedia.org/wiki/" +
+    species +
+    "</a>";
   var endpointURL =
     "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=" +
     species +
@@ -286,9 +292,8 @@ function wikiGet(species) {
       console.log(data.query.pages[0].extract);
       wildlifeStatsEl.append(data.query.pages[0].title + ": ");
       wildlifeStatsEl.append(data.query.pages[0].extract);
-      wildlifeStatsEl.append(
-        "For more information visit the following link: " + wikiArticle
-      );
+
+      wikiLinkEl.innerHTML = `For more information visit the following link: ${wikiArticle}`;
     });
 }
 

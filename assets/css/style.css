@@ -8,8 +8,8 @@ body {
 }
 
 header {
-  background-color: gray;
-  height: 200px;
+
+  min-height: 200px;
 }
 
 header h1 {
