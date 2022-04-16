@@ -13,20 +13,24 @@ header {
 }
 
 header h1 {
- font-size: 40px;
+ font-size: 30px;
   text-align: right;
   margin-top: 10px;
   float: top;
 }
 
-.mapContainer {
-  flex-wrap: flex;
+form {
+  max-width: 300px;
 }
 
-#locationSearch {
+.mapContainer {
+  /* flex-wrap: flex; */
+}
+
+/* #locationSearch {
   width: 450px;
   border: 2px;
-}
+} */
 
 .btn {
   margin-top: 10px;
@@ -51,7 +55,7 @@ margin-top: 10px;
 }
 
 .citationsHead {
-  margin-top: 150px;
+  margin-top: 41px;
 }
 
 .headIcon {
@@ -61,4 +65,8 @@ margin-top: 10px;
 
 #projectTitle {
 display: block;
+}
+
+.container {
+  flex-direction: column;
 }
