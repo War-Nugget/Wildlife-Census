@@ -21,6 +21,11 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&family=Palette+Mosaic&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Wildlife Census</title>
   </head>
@@ -30,7 +35,7 @@
       <div class=""row">
     <header>
       <div class="col s4">
-      <div class="input-field col s2 m4 left flex-direction: column">
+      <div class="input-field col s2 l4 left flex-direction: column">
 
         <form><input id="latInput" placeholder="Latitude" name="latInput"><input id="longInput" placeholder="Longitude" name="longInput"><button id="searchBtn" class="btn modal-trigger" >Search</button></input></form>
       </div>
@@ -46,7 +51,7 @@
         </div>
       </div>
 
-    <div class="input-field col s2 m4 left">
+    <div class="input-field col s2 l4 left">
       <form><input
       id="speciesMenu"
       list="species"
@@ -85,16 +90,16 @@
 
     <div class="row mapContainer">
 
-        <div class="col s12 m6 l9" id="wildlifeMap">
+        <div class="col s12 l9" id="wildlifeMap">
 
           <h2>Occurance Map</h2>
-          <div id="map" style="width: 500px; height: 350px"></div>
+          <div id="map" style="width: 550px; height: 375px"></div>
           <p>Each dot represents one occurance of witness of the species.</p>
           <img src="assets/images/GBIF-2015-full.jpg">
     
         </div>
 
-        <div class="col s12 m6 l3 left" id="wildlifeImg">
+        <div class="col s12 l3 left" id="wildlifeImg">
 
 
       
@@ -104,21 +109,21 @@
 
       <div class="row">
 
-        <div class="col s12 m12 l12" id="wildlifeStats">
+        <div class="col s12 l12" id="wildlifeStats">
         </div>
 
       </div>
 
       <div class="row">
 
-        <div class="col s12 m12 l12" id="wikiLink">
+        <div class="col s12 l12" id="wikiLink">
         </div>
       </div>
       
     <div class="divider"></div>
     <div class="row">
 
-      <div class="col s12 m12 lg12">
+      <div class="col s12 lg12">
 
         <button id="clearStorage" class="btn" >Clear Stored Searches</button>
         <a href="./citations.html"><button id="citations" class="btn">Citations</button></a>
