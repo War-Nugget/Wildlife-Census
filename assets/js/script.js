@@ -306,6 +306,27 @@ function setupMap(center) {
       },
     });
   });
+
+  //Blue Whale Layer
+  map.on("load", () => {
+    map.addSource("Balaenoptera_Musculus-4vlqye", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.9dw9o3x9",
+    });
+    map.addLayer({
+      id: "ianjustinferris.9dw9o3x9",
+      type: "circle",
+      source: "Balaenoptera_Musculus-4vlqye",
+      "source-layer": "Balaenoptera_Musculus-4vlqye",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#3866E9",
+        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
 }
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
