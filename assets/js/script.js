@@ -327,6 +327,28 @@ function setupMap(center) {
       },
     });
   });
+
+
+   //Whooping Crane Layer
+  map.on("load", () => {
+    map.addSource("Grus_Americana_Linnaeus_1758-ac0tdu", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.0ajin36k",
+    });
+    map.addLayer({
+      id: "ianjustinferris.0ajin36k",
+      type: "circle",
+      source: "Grus_Americana_Linnaeus_1758-ac0tdu",
+      "source-layer": "Grus_Americana_Linnaeus_1758-ac0tdu",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#ebe0c3",
+        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  });
 }
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
