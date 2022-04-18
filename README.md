@@ -2,7 +2,7 @@
 
 # Description:
 
-An interactive web application that will allow the user to wildlife density of endangered wildlife species based on an input search location coordinates.
+An interactive web application that will allow the user to evaluate population density of endangered wildlife species based on user input of latitude and longtiude.
 
 # User Story:
 
@@ -48,7 +48,7 @@ This project meets the following project requirements and acceptance criteria:
 - Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
 - Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-# Useage:
+# Usage:
 
 When the user visits the site, they are presented with an unpopulated map that locates to the user's coordinates, input fields for Latitude and Longitude, and a dropdown menu with endangered species to choose from.
 
@@ -57,3 +57,49 @@ When the user enters a Latitude and Longitude input along with selecting a speci
 When the user enters new search parameters, the map will locate to the new coordinates and display the new species information, and the species image and description will change to the new species selected.
 
 When the user clicks the "Citations" link, they are redirected to the Citations page with information on the API's used and their organization information.
+
+# GBIF Citations
+
+Flying Squirrel
+
+GBIF.org (11 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.8qzxj3
+
+Panda
+
+GBIF.org (12 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.zekw2k
+
+Tiger
+
+GBIF.org (13 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.zd3any
+
+Whooping Crane
+
+GBIF.org (13 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.k9kyrg
+
+Asian Elephant
+
+GBIF.org (14 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.xffcun
+
+Sea Otter
+
+GBIF.org (14 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.x2hmn4
+
+Snow Leopard
+
+GBIF.org (15 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.g26umg
+
+Tasmanian Devil
+
+GBIF.org (16 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.q45dj4
+
+Orangutan
+
+GBIF.org (16 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.kj7mp6
+
+Gorilla
+
+GBIF.org (18 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.ynjq4f
+
+Blue Whale
+
+GBIF.org (18 April 2022) GBIF Occurrence Download https://doi.org/10.15468/dl.25y45f

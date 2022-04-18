@@ -9,15 +9,17 @@ var latitudeModalEl = document.querySelector("#badLat");
 var wikiLinkEl = document.querySelector("#wikiLink");
 
 const speciesOptions = {
-  tiger: "tiger",
+  siberianTiger: "siberian_tiger",
   flyingSquirrel: "flying_squirrel",
   seaOtter: "sea_otter",
   giantPanda: "giant_panda",
   whoopingCrane: "whooping_crane",
   blueWhale: "blue_whale",
-  elephant: "elephant",
+  asianElephant: "asian_elephant",
   snowLeopard: "snow_leopard",
   gorilla: "gorilla",
+  tasmanianDevil: "tasmanian_devil",
+  orangutan: "orangutan"
 };
 
 var storedSearches = [];
@@ -129,22 +131,39 @@ function setupMap(center) {
       type: "circle",
       source: "thene_Cunicularia_Dataset-bqcy9s",
       "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
+      layout: {
+    visibility: "none",
+  },
       paint: {
         "circle-radius": 3,
         "circle-color": "#00FF99",
         "circle-stroke-color": "#006666",
         "circle-stroke-width": 1,
-        "circle-opacity": 0.75,
+        "circle-opacity": 1,
       },
     });
   });
+}
+
+function toggleLayerVisibility() {
+  const visibility = map.getLayoutProperty("ianjustinferris.7e7jfhov", "visibility")
+
+  if (visibility === "visible") {
+    map.setLayoutProperty(layerId, "visibility", "none")
+  } else {
+    map.setLayoutProperty(layerId, "visibility", "visible")
+  }
+}
+toggleLayerVisibility()
+
 
   // Panda Layer
-  map.on("load", () => {
-    map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.8892homl",
-    });
+  function pandaLayer(){
+  // map.on("load", () => {
+  //   map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.8892homl",
+  //   });
     map.addLayer({
       id: "ianjustinferris.8892homl",
       type: "circle",
@@ -158,14 +177,17 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
+
 
   // Tiger Layer
-  map.on("load", () => {
-    map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.1j46i1u6",
-    });
+  function tigerLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.1j46i1u6",
+  //   });
     map.addLayer({
       id: "ianjustinferris.1j46i1u6",
       type: "circle",
@@ -179,14 +201,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
 
   // Elephant Layer
-  map.on("load", () => {
-    map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.5phjig5h",
-    });
+  function elephantLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.5phjig5h",
+  //   });
     map.addLayer({
       id: "ianjustinferris.5phjig5h",
       type: "circle",
@@ -200,14 +224,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
 
   //Otter Layer
-  map.on("load", () => {
-    map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.5eqsetbk",
-    });
+  function otterLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.5eqsetbk",
+  //   });
     map.addLayer({
       id: "ianjustinferris.5eqsetbk",
       type: "circle",
@@ -221,14 +247,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+  }
 
   //Snow Leopard Layer
-  map.on("load", () => {
-    map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.avhp1spo",
-    });
+  function snowLeopardLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.avhp1spo",
+  //   });
     map.addLayer({
       id: "ianjustinferris.avhp1spo",
       type: "circle",
@@ -242,14 +270,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
 
   //Gorilla Layer
-  map.on("load", () => {
-    map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.0gafe0i4",
-    });
+  function gorillaLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.0gafe0i4",
+  //   });
     map.addLayer({
       id: "ianjustinferris.0gafe0i4",
       type: "circle",
@@ -263,14 +293,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+  }
 
   //Tasmanian Devil Layer
-  map.on("load", () => {
-    map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.bg9oh3sj",
-    });
+  function tasmanianDevilLayer() {
+  // map.on("load", () => {
+  //   map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.bg9oh3sj",
+  //   });
     map.addLayer({
       id: "ianjustinferris.bg9oh3sj",
       type: "circle",
@@ -284,14 +316,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
 
   //Orangutan Layer
-  map.on("load", () => {
-    map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.1bwz4brn",
-    });
+  function orangutanLayer(){
+  // map.on("load", () => {
+  //   map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.1bwz4brn",
+  //   });
     map.addLayer({
       id: "ianjustinferris.1bwz4brn",
       type: "circle",
@@ -305,14 +339,16 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
-  });
+  // });
+}
 
   //Blue Whale Layer
-  map.on("load", () => {
-    map.addSource("Balaenoptera_Musculus-4vlqye", {
-      type: "vector",
-      url: "mapbox://ianjustinferris.9dw9o3x9",
-    });
+  function blueWhaleLayer(){
+  // map.on("load", () => {
+  //   map.addSource("Balaenoptera_Musculus-4vlqye", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.9dw9o3x9",
+  //   });
     map.addLayer({
       id: "ianjustinferris.9dw9o3x9",
       type: "circle",
@@ -326,6 +362,7 @@ function setupMap(center) {
         "circle-opacity": 0.85,
       },
     });
+//   });
   });
 
 
@@ -350,6 +387,31 @@ function setupMap(center) {
     });
   });
 }
+
+
+   //Whooping Crane Layer
+  function whoopingCraneLayer(){
+  // map.on("load", () => {
+  //   map.addSource("Grus_Americana_Linnaeus_1758-ac0tdu", {
+  //     type: "vector",
+  //     url: "mapbox://ianjustinferris.0ajin36k",
+  //   });
+    map.addLayer({
+      id: "ianjustinferris.0ajin36k",
+      type: "circle",
+      source: "Grus_Americana_Linnaeus_1758-ac0tdu",
+      "source-layer": "Grus_Americana_Linnaeus_1758-ac0tdu",
+      paint: {
+        "circle-radius": 3.5,
+        "circle-color": "#ebe0c3",
+        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-width": 1.5,
+        "circle-opacity": 0.85,
+      },
+    });
+  // });
+}
+
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
 
@@ -426,9 +488,9 @@ function runDisplayInfo(species) {
     wikiGet(speciesOptions.giantPanda);
     wikiGetImage(speciesOptions.giantPanda);
   }
-  if (species === "Tiger") {
-    wikiGet(speciesOptions.tiger);
-    wikiGetImage(speciesOptions.tiger);
+  if (species === "Siberian Tiger") {
+    wikiGet(speciesOptions.siberianTiger);
+    wikiGetImage(speciesOptions.siberianTiger);
   }
   if (species === "Whooping Crane") {
     wikiGet(speciesOptions.whoopingCrane);
@@ -446,4 +508,29 @@ function runDisplayInfo(species) {
     wikiGet(speciesOptions.seaOtter);
     wikiGetImage(speciesOptions.seaOtter);
   }
+  if (species === "Asian Elephant") {
+    wikiGet(speciesOptions.asianElephant);
+    wikiGetImage(speciesOptions.asianElephant);
+  }
+  if (species === "Snow Leopard") {
+    wikiGet(speciesOptions.snowLeopard);
+    wikiGetImage(speciesOptions.snowLeopard);
+  }
+  if (species === "Gorilla") {
+    wikiGet(speciesOptions.gorilla);
+    wikiGetImage(speciesOptions.gorilla);
+  }
+  if (species === "Tasmanian Devil") {
+    wikiGet(speciesOptions.tasmanianDevil);
+    wikiGetImage(speciesOptions.tasmanianDevil);
+  }
+  if (species === "Orangutan") {
+    wikiGet(speciesOptions.orangutan);
+    wikiGetImage(speciesOptions.orangutan);
+  }
+ 
 }
+
+
+
+
