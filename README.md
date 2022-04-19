@@ -52,11 +52,17 @@ This project meets the following project requirements and acceptance criteria:
 
 When the user visits the site, they are presented with an unpopulated map that locates to the user's coordinates, input fields for Latitude and Longitude, and a dropdown menu with endangered species to choose from.
 
+![Screenshot showing deployed application on page load](assets/images/wildlifeCensusScreenshot1.JPG)
+
 When the user enters a Latitude and Longitude input along with selecting a species, the map will locate to the new coordinates, and populate sighting occurances for the wildlife selected. The species summary and image will populate to show a picture of the species as well as as a description from the Wikipedia Api.
+
+![Screenshot showing deployed application on page load](assets/images/wildlifeCensusScreenshot2.JPG)
 
 When the user enters new search parameters, the map will locate to the new coordinates and display the new species information, and the species image and description will change to the new species selected.
 
 When the user clicks the "Citations" link, they are redirected to the Citations page with information on the API's used and their organization information.
+
+![Screenshot showing deployed application on page load](assets/images/wildlifeCensusScreenshot3.JPG)
 
 # GBIF Citations
 
