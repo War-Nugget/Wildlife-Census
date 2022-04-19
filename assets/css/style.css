@@ -57,6 +57,11 @@ body,
 .container {
   flex-direction: column;
 }
+
+.heroBanner {
+width: 100%;
+height: auto;
+}
 /* 
 .GBIFLegend {
   display: flex;
