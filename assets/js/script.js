@@ -142,8 +142,6 @@ function setupMap(center) {
   });
 
 
-
-
   // Panda Layer
   map.on("load", () => {
     map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
@@ -164,7 +162,6 @@ function setupMap(center) {
       },
     });
   });
-
 
 
   // Tiger Layer
@@ -202,7 +199,7 @@ function setupMap(center) {
       "source-layer": "Elephus_Maximus_Linnaeus-0d8jht",
       paint: {
         "circle-radius": 3.5,
-        "circle-color": "#3486eb",
+        "circle-color": "#eba834",
         "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
@@ -367,28 +364,6 @@ function setupMap(center) {
 }
 
 
-   //Whooping Crane Layer
-  function whoopingCraneLayer(){
-  // map.on("load", () => {
-  //   map.addSource("Grus_Americana_Linnaeus_1758-ac0tdu", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.0ajin36k",
-  //   });
-    map.addLayer({
-      id: "ianjustinferris.0ajin36k",
-      type: "circle",
-      source: "Grus_Americana_Linnaeus_1758-ac0tdu",
-      "source-layer": "Grus_Americana_Linnaeus_1758-ac0tdu",
-      paint: {
-        "circle-radius": 3.5,
-        "circle-color": "#ebe0c3",
-        "circle-stroke-color": "#ACD9E5",
-        "circle-stroke-width": 1.5,
-        "circle-opacity": 0.85,
-      },
-    });
-  // });
-}
 
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!

@@ -1,7 +1,8 @@
 * {
   background-color: white;
   color: black;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 body h2 {
@@ -13,7 +14,7 @@ header {
 }
 
 header h1 {
- font-size: 30px;
+  font-size: 30px;
   text-align: right;
   margin-top: 10px;
   float: top;
@@ -22,15 +23,6 @@ header h1 {
 form {
   max-width: 300px;
 }
-
-.mapContainer {
-  /* flex-wrap: flex; */
-}
-
-/* #locationSearch {
-  width: 450px;
-  border: 2px;
-} */
 
 .btn {
   margin-top: 10px;
@@ -51,18 +43,87 @@ body,
 }
 
 .citationsTitle {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 .citationsHead {
   margin-top: 41px;
 }
 
-
 #projectTitle {
-display: block;
+  display: block;
 }
 
 .container {
   flex-direction: column;
+}
+/* 
+.GBIFLegend {
+  display: flex;
+  flex-direction: inline;
+  border: black solid 1px;
+} */
+
+#legend {
+  border: solid 1px black;
+}
+
+#T,
+#W,
+#F,
+#A,
+#SL,
+#ST,
+#GP,
+#B,
+#SO,
+#O,
+#G {
+  width: 10px;
+  height: 10px;
+  border: solid 1px black;
+}
+
+#T {
+  background-color: #861800;
+}
+
+#W {
+  background-color: #ebe0c3;
+}
+
+#F {
+  background-color: #00ff99;
+}
+
+#A {
+  background-color: #eba834;
+}
+
+#SL {
+  background-color: #a637e6;
+}
+
+#ST {
+  background-color: #ff94c9;
+}
+
+#GP {
+  background-color: #f4511e;
+}
+
+#B {
+  background-color: #3866e9;
+}
+
+#SO {
+  background-color: #eaf24b;
+}
+
+#O {
+  background-color: #1fe415;
+}
+
+#G {
+  background-color: #48f0f0;
 }
