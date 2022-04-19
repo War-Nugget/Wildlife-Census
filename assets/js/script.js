@@ -131,39 +131,25 @@ function setupMap(center) {
       type: "circle",
       source: "thene_Cunicularia_Dataset-bqcy9s",
       "source-layer": "Athene_Cunicularia_Dataset-bqcy9s",
-      layout: {
-    visibility: "none",
-  },
       paint: {
         "circle-radius": 3,
         "circle-color": "#00FF99",
-        "circle-stroke-color": "#006666",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1,
         "circle-opacity": 1,
       },
     });
   });
-}
 
-function toggleLayerVisibility() {
-  const visibility = map.getLayoutProperty("ianjustinferris.7e7jfhov", "visibility")
 
-  if (visibility === "visible") {
-    map.setLayoutProperty(layerId, "visibility", "none")
-  } else {
-    map.setLayoutProperty(layerId, "visibility", "visible")
-  }
-}
-toggleLayerVisibility()
 
 
   // Panda Layer
-  function pandaLayer(){
-  // map.on("load", () => {
-  //   map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.8892homl",
-  //   });
+  map.on("load", () => {
+    map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.8892homl",
+    });
     map.addLayer({
       id: "ianjustinferris.8892homl",
       type: "circle",
@@ -172,22 +158,21 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#F4511E",
-        "circle-stroke-color": "#BF360C",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
 
   // Tiger Layer
-  function tigerLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.1j46i1u6",
-  //   });
+  map.on("load", () => {
+    map.addSource("Panthera_Tigris_LInnaeus_1758-022kix", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.1j46i1u6",
+    });
     map.addLayer({
       id: "ianjustinferris.1j46i1u6",
       type: "circle",
@@ -196,21 +181,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#ff94c9",
-        "circle-stroke-color": "#CC6633 ",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
   // Elephant Layer
-  function elephantLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.5phjig5h",
-  //   });
+ map.on("load", () => {
+    map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.5phjig5h",
+    });
     map.addLayer({
       id: "ianjustinferris.5phjig5h",
       type: "circle",
@@ -219,21 +203,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#3486eb",
-        "circle-stroke-color": "#b2d1f7",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
   //Otter Layer
-  function otterLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.5eqsetbk",
-  //   });
+  map.on("load", () => {
+    map.addSource("Enhydra_Lutris_Merriam1904-6iungd", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.5eqsetbk",
+    });
     map.addLayer({
       id: "ianjustinferris.5eqsetbk",
       type: "circle",
@@ -242,21 +225,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#eaf24b",
-        "circle-stroke-color": "#e6c837",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-  }
+  });
+  
 
   //Snow Leopard Layer
-  function snowLeopardLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.avhp1spo",
-  //   });
+  map.on("load", () => {
+    map.addSource("Panthera_Uncia_Schreber1775-6vnt41", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.avhp1spo",
+    });
     map.addLayer({
       id: "ianjustinferris.avhp1spo",
       type: "circle",
@@ -265,21 +247,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#a637e6",
-        "circle-stroke-color": "#cfa2e8",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
   //Gorilla Layer
-  function gorillaLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.0gafe0i4",
-  //   });
+  map.on("load", () => {
+    map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.0gafe0i4",
+    });
     map.addLayer({
       id: "ianjustinferris.0gafe0i4",
       type: "circle",
@@ -288,21 +269,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#48f0f0",
-        "circle-stroke-color": "#0db8b8",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-  }
+  });
+  
 
   //Tasmanian Devil Layer
-  function tasmanianDevilLayer() {
-  // map.on("load", () => {
-  //   map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.bg9oh3sj",
-  //   });
+  map.on("load", () => {
+    map.addSource("Sarcophilus_Harrisi_Boltard_1-8biooa", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.bg9oh3sj",
+    });
     map.addLayer({
       id: "ianjustinferris.bg9oh3sj",
       type: "circle",
@@ -311,21 +291,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#861800",
-        "circle-stroke-color": "#E63009",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
   //Orangutan Layer
-  function orangutanLayer(){
-  // map.on("load", () => {
-  //   map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.1bwz4brn",
-  //   });
+  map.on("load", () => {
+    map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.1bwz4brn",
+    });
     map.addLayer({
       id: "ianjustinferris.1bwz4brn",
       type: "circle",
@@ -334,21 +313,20 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#1FE415",
-        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-  // });
-}
+  });
+
 
   //Blue Whale Layer
-  function blueWhaleLayer(){
-  // map.on("load", () => {
-  //   map.addSource("Balaenoptera_Musculus-4vlqye", {
-  //     type: "vector",
-  //     url: "mapbox://ianjustinferris.9dw9o3x9",
-  //   });
+  map.on("load", () => {
+    map.addSource("Balaenoptera_Musculus-4vlqye", {
+      type: "vector",
+      url: "mapbox://ianjustinferris.9dw9o3x9",
+    });
     map.addLayer({
       id: "ianjustinferris.9dw9o3x9",
       type: "circle",
@@ -357,13 +335,13 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#3866E9",
-        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
     });
-//   });
   });
+
 
 
    //Whooping Crane Layer
@@ -380,7 +358,7 @@ toggleLayerVisibility()
       paint: {
         "circle-radius": 3.5,
         "circle-color": "#ebe0c3",
-        "circle-stroke-color": "#ACD9E5",
+        "circle-stroke-color": "black",
         "circle-stroke-width": 1.5,
         "circle-opacity": 0.85,
       },
