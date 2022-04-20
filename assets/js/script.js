@@ -79,7 +79,7 @@ function setEventListeners() {
 
       function storeSearchLocations() {
         console.log("STORE SEARCH LOCATIONS CALLED");
-        locn = JSON.parse(localStorage.getItem("location"));
+        locn = JSON.parse(localStorage.getItem("locn"));
         console.log(locn);
         if (!locn) {
           locn = [];
