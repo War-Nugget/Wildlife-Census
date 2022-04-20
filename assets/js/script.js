@@ -7,6 +7,7 @@ var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
 var latitudeModalEl = document.querySelector("#badLat");
 var wikiLinkEl = document.querySelector("#wikiLink");
+var storedSearches = document.querySelector("#storedSearches");
 
 const speciesOptions = {
   siberianTiger: "siberian_tiger",
@@ -19,7 +20,7 @@ const speciesOptions = {
   snowLeopard: "snow_leopard",
   gorilla: "gorilla",
   tasmanianDevil: "tasmanian_devil",
-  orangutan: "orangutan"
+  orangutan: "orangutan",
 };
 
 var storedSearches = [];
@@ -74,6 +75,25 @@ function setEventListeners() {
       console.log("THIS SPECIES WAS CHOSEN: " + species);
       runSearch(lat, lon); // RUN SEARCH FUNCTION
       runDisplayInfo(species);
+      storeSearchLocations();
+
+      function storeSearchLocations() {
+        console.log("STORE SEARCH LOCATIONS CALLED");
+        locn = JSON.parse(localStorage.getItem("locn"));
+        console.log(locn);
+        if (!locn) {
+          locn = [];
+        }
+
+        let coords = {
+          latitude: lat,
+          longitude: lon,
+        };
+        console.log(coords);
+        locn.push(coords);
+        console.log(locn);
+        window.localStorage.setItem("locn", JSON.stringify(locn));
+      }
     }
 
     document.addEventListener("submit", function (event) {
@@ -92,7 +112,27 @@ function setEventListeners() {
   });
 }
 
+function populateButtons(location) {
+  console.log("POPULATE BUTTONS CALLED");
+  locn = JSON.parse(localStorage.getItem("locn"));
+  storedSearches.innerHTML = "";
+  for (var i = 0; i < locn.length; i++) {
+    var button = document.createElement("button");
+    button.classList = "btn ";
+    console.log(locn);
+    button.textContent = locn[i].latitude + locn[i].longitude;
+    button.setAttribute(
+      "data-city",
+      locn[i].latitude + "|" + locn[i].longitude
+    );
+    storedSearches.appendChild(button);
+    console.log("APPEND HERE??");
+    // storeSearchLocations(); **moving up into main function?
+  }
+}
+
 setEventListeners();
+populateButtons();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
@@ -141,7 +181,6 @@ function setupMap(center) {
     });
   });
 
-
   // Panda Layer
   map.on("load", () => {
     map.addSource("Ailuropoda_melanolenea_David_-57zylr", {
@@ -162,7 +201,6 @@ function setupMap(center) {
       },
     });
   });
-
 
   // Tiger Layer
   map.on("load", () => {
@@ -185,9 +223,8 @@ function setupMap(center) {
     });
   });
 
-
   // Elephant Layer
- map.on("load", () => {
+  map.on("load", () => {
     map.addSource("Elephus_Maximus_Linnaeus-0d8jht", {
       type: "vector",
       url: "mapbox://ianjustinferris.5phjig5h",
@@ -206,7 +243,6 @@ function setupMap(center) {
       },
     });
   });
-
 
   //Otter Layer
   map.on("load", () => {
@@ -228,7 +264,6 @@ function setupMap(center) {
       },
     });
   });
-  
 
   //Snow Leopard Layer
   map.on("load", () => {
@@ -251,7 +286,6 @@ function setupMap(center) {
     });
   });
 
-
   //Gorilla Layer
   map.on("load", () => {
     map.addSource("Gorilla_Beringei_Matschie1903-55g5ja", {
@@ -272,7 +306,6 @@ function setupMap(center) {
       },
     });
   });
-  
 
   //Tasmanian Devil Layer
   map.on("load", () => {
@@ -295,7 +328,6 @@ function setupMap(center) {
     });
   });
 
-
   //Orangutan Layer
   map.on("load", () => {
     map.addSource("Pongo_Pygmaeus_Linnaeus_1760-4d8s3p", {
@@ -316,7 +348,6 @@ function setupMap(center) {
       },
     });
   });
-
 
   //Blue Whale Layer
   map.on("load", () => {
@@ -339,9 +370,7 @@ function setupMap(center) {
     });
   });
 
-
-
-   //Whooping Crane Layer
+  //Whooping Crane Layer
   map.on("load", () => {
     map.addSource("Grus_Americana_Linnaeus_1758-ac0tdu", {
       type: "vector",
@@ -362,9 +391,6 @@ function setupMap(center) {
     });
   });
 }
-
-
-
 
 // TODO: Connect this function to the "Select a Species" drop down menu -- DONE!
 
@@ -419,11 +445,11 @@ function wikiGetImage(species) {
       var pageID = Object.keys(data.query.pages)[0];
       var thumbnailFromPageID = data.query.pages[pageID].thumbnail.source;
       console.log(thumbnailFromPageID);
-      createH2 = document.createElement("h2")
-      createH2.innerHTML = species
+      createH2 = document.createElement("h2");
+      createH2.innerHTML = species;
       imgElForThumbnail = document.createElement("img");
       imgElForThumbnail.setAttribute("src", thumbnailFromPageID);
-      wildlifeImgEl.append(createH2)
+      wildlifeImgEl.append(createH2);
       wildlifeImgEl.append(imgElForThumbnail);
     });
 }
@@ -481,9 +507,4 @@ function runDisplayInfo(species) {
     wikiGet(speciesOptions.orangutan);
     wikiGetImage(speciesOptions.orangutan);
   }
- 
 }
-
-
-
-
