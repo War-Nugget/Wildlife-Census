@@ -7,7 +7,7 @@ var wildlifeStatsEl = document.querySelector("#wildlifeStats");
 var wildlifeImgEl = document.querySelector("#wildlifeImg");
 var latitudeModalEl = document.querySelector("#badLat");
 var wikiLinkEl = document.querySelector("#wikiLink");
-var storedSearches = document.querySelector("#storedSearches");
+var storedSearches = document.getElementById("storedSearches");
 
 const speciesOptions = {
   siberianTiger: "siberian_tiger",
@@ -120,18 +120,18 @@ function populateButtons(location) {
     var button = document.createElement("button");
     button.classList = "btn ";
     console.log(locn);
-    button.textContent = locn[i].latitude + locn[i].longitude;
+    button.textContent = locn[i].latitude + " | " + locn[i].longitude;
     button.setAttribute(
       "data-city",
       locn[i].latitude + "|" + locn[i].longitude
     );
-    storedSearches.appendChild(button);
+    document.getElementById("storedSearches").appendChild(button);
     console.log("APPEND HERE??");
     // storeSearchLocations(); **moving up into main function?
   }
-  populateButtons();
 }
 
+populateButtons();
 setEventListeners();
 
 mapboxgl.accessToken =
