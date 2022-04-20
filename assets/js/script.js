@@ -84,15 +84,16 @@ function setEventListeners() {
         if (!locn) {
           locn = [];
         }
-
-        let coords = {
-          latitude: lat,
-          longitude: lon,
-        };
-        console.log(coords);
-        locn.push(coords);
-        console.log(locn);
-        window.localStorage.setItem("locn", JSON.stringify(locn));
+        if (lat < 90 && lat > -90 && lon < 180 && lon > -180) {
+          let coords = {
+            latitude: lat,
+            longitude: lon,
+          };
+          console.log(coords);
+          locn.push(coords);
+          console.log(locn);
+          window.localStorage.setItem("locn", JSON.stringify(locn));
+        }
       }
     }
 
