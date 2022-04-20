@@ -129,10 +129,10 @@ function populateButtons(location) {
     console.log("APPEND HERE??");
     // storeSearchLocations(); **moving up into main function?
   }
+  populateButtons();
 }
 
 setEventListeners();
-populateButtons();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaWFuanVzdGluZmVycmlzIiwiYSI6ImNsMXUzdWFrdjI5YzEzY3BjcTN2bHdxcXkifQ.nHDp49alvjpiTFbRUmWL0Q";
