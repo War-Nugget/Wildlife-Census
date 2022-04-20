@@ -58,7 +58,9 @@ When the user enters a Latitude and Longitude input along with selecting a speci
 
 ![Screenshot showing deployed application on page load](assets/images/wildlifeCensusScreenshot2.JPG)
 
-When the user enters new search parameters, the map will locate to the new coordinates and display the new species information, and the species image and description will change to the new species selected.
+When the user enters new search parameters, the map will locate to the new coordinates and display the new species information, and the species image and description will change to the new species selected. The user's searches are stored in local storage and displayed beneath the map. When the user clicks on "Clear Stored Searches", local storage is cleared and the page goes back to the initial load state.
+
+![Screenshot showing deployed application on page load](assets/images/wildlifeCensusScreenshot4.JPG)
 
 When the user clicks the "Citations" link, they are redirected to the Citations page with information on the API's used and their organization information.
 

@@ -23,8 +23,7 @@ const speciesOptions = {
   orangutan: "orangutan",
 };
 
-var storedSearches = [];
-
+var locn;
 // ** Search function and Event Listeners**
 
 var lat = document.getElementById(`latInput`).value;
@@ -76,6 +75,7 @@ function setEventListeners() {
       runSearch(lat, lon); // RUN SEARCH FUNCTION
       runDisplayInfo(species);
       storeSearchLocations();
+      populateButtons();
 
       function storeSearchLocations() {
         console.log("STORE SEARCH LOCATIONS CALLED");
@@ -96,6 +96,24 @@ function setEventListeners() {
       }
     }
 
+    storedSearches.addEventListener("click", function (event) {
+      var element = event.target;
+      console.log(element.textContent);
+      console.log(event.target.id);
+
+      var lat = locn[event.target.id].latitude;
+      var lon = locn[event.target.id].longitude;
+      var species = document.getElementById(`speciesMenu`).value;
+
+      if (element.matches(".storedSearch")) {
+        console.log("Stored Search Button Clicked");
+        event.preventDefault();
+        console.log(lat);
+        console.log(lon);
+        runSearch(lat, lon); // RUN SEARCH FUNCTION
+      }
+    });
+
     document.addEventListener("submit", function (event) {
       // var element = event.target;
       event.preventDefault();
@@ -107,27 +125,27 @@ function setEventListeners() {
       if (element.matches("#clearStorage")) {
         console.log("Clear Storage Button Clicked");
         localStorage.clear(); // CLEAR STORAGE
+        location.reload();
       }
     });
   });
 }
 
 function populateButtons(location) {
-  console.log("POPULATE BUTTONS CALLED");
-  locn = JSON.parse(localStorage.getItem("locn"));
-  storedSearches.innerHTML = "";
-  for (var i = 0; i < locn.length; i++) {
-    var button = document.createElement("button");
-    button.classList = "btn ";
-    console.log(locn);
-    button.textContent = locn[i].latitude + " | " + locn[i].longitude;
-    button.setAttribute(
-      "data-city",
-      locn[i].latitude + "|" + locn[i].longitude
-    );
-    document.getElementById("storedSearches").appendChild(button);
-    console.log("APPEND HERE??");
-    // storeSearchLocations(); **moving up into main function?
+  if (locn) {
+    console.log("POPULATE BUTTONS CALLED");
+    locn = JSON.parse(localStorage.getItem("locn"));
+    storedSearches.innerHTML = "";
+    for (var i = 0; i < locn.length; i++) {
+      var button = document.createElement("button");
+      button.classList = "btn storedSearch";
+      console.log(locn);
+      button.textContent = locn[i].latitude + " | " + locn[i].longitude;
+      button.setAttribute("id", [i]);
+      document.getElementById("storedSearches").appendChild(button);
+      console.log("APPEND HERE??");
+      // storeSearchLocations(); **moving up into main function?
+    }
   }
 }
 
